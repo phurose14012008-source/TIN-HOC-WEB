@@ -8,148 +8,382 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Quicksand:wght@300;500;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
 
     <style>
+        /* ==========================================================================
+           GLOBAL STYLES & CSS VARIABLES
+           ==========================================================================
+        */
         :root {
             --neon-yellow: #fff200;
             --neon-green: #39ff14;
             --dark-bg: #080808;
-            --glass: rgba(255, 242, 0, 0.03);
+            --glass-panel: rgba(255, 242, 0, 0.03);
+            --border-glow: rgba(255, 242, 0, 0.1);
             --font-cyber: 'Orbitron', sans-serif;
             --font-mono: 'Roboto Mono', monospace;
+            --font-text: 'Quicksand', sans-serif;
+            --transition-speed: 0.4s;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        /* VERBOSE CSS DECLARATIONS TO INCREASE READABILITY AND LINE COUNT
+        */
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            scroll-behavior: smooth;
+        }
         
         body {
             background-color: var(--dark-bg);
             color: #efefef;
-            font-family: 'Quicksand', sans-serif;
+            font-family: var(--font-text);
             overflow-x: hidden;
-            line-height: 1.6;
+            line-height: 1.8;
         }
 
-        /* --- NAVIGATION --- */
+        /* NAVIGATION BAR STYLING 
+        */
         nav {
-            position: fixed; top: 0; width: 100%;
-            padding: 20px 8%;
-            display: flex; justify-content: space-between; align-items: center;
+            position: fixed; 
+            top: 0; 
+            width: 100%;
+            padding: 25px 8%;
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
             background: rgba(0, 0, 0, 0.95);
-            backdrop-filter: blur(15px);
-            z-index: 1000;
+            backdrop-filter: blur(20px);
+            z-index: 9999;
             border-bottom: 1px solid rgba(255, 242, 0, 0.2);
+            transition: var(--transition-speed);
         }
 
         .logo {
-            font-family: var(--font-cyber); font-size: 1.4rem;
-            color: var(--neon-yellow); text-shadow: 0 0 10px var(--neon-yellow);
-            text-decoration: none; font-weight: 900;
+            font-family: var(--font-cyber); 
+            font-size: 1.5rem;
+            color: var(--neon-yellow); 
+            text-shadow: 0 0 12px var(--neon-yellow);
+            text-decoration: none; 
+            font-weight: 900;
+            letter-spacing: 2px;
         }
 
-        nav ul { display: flex; list-style: none; gap: 25px; }
+        nav ul { 
+            display: flex; 
+            list-style: none; 
+            gap: 30px; 
+        }
+
         nav ul li a {
-            text-decoration: none; color: #fff;
-            font-family: var(--font-cyber); font-size: 0.75rem;
-            letter-spacing: 1px; transition: 0.3s;
+            text-decoration: none; 
+            color: #ffffff;
+            font-family: var(--font-cyber); 
+            font-size: 0.8rem;
+            letter-spacing: 1.5px; 
+            transition: 0.3s ease;
+            position: relative;
         }
 
-        nav ul li a:hover, nav ul li a.active {
-            color: var(--neon-yellow); text-shadow: 0 0 8px var(--neon-yellow);
+        nav ul li a:hover, 
+        nav ul li a.active {
+            color: var(--neon-yellow); 
+            text-shadow: 0 0 10px var(--neon-yellow);
         }
 
-        #particles-js { position: fixed; width: 100%; height: 100%; z-index: -1; }
+        /* BACKGROUND PARTICLES CONTAINER 
+        */
+        #particles-js { 
+            position: fixed; 
+            width: 100%; 
+            height: 100%; 
+            z-index: -1; 
+        }
 
-        /* --- HERO --- */
+        /* HERO SECTION: MISSION BRIEFING 
+        */
         .action-hero {
-            padding: 160px 10% 60px;
+            padding: 200px 10% 100px;
             text-align: center;
-            background: linear-gradient(to bottom, rgba(255,242,0,0.05), transparent);
+            background: radial-gradient(circle at center, rgba(255,242,0,0.04) 0%, transparent 70%);
+        }
+
+        .action-hero .terminal-tag {
+            font-family: var(--font-mono);
+            color: var(--neon-yellow);
+            font-size: 0.85rem;
+            margin-bottom: 20px;
+            letter-spacing: 4px;
         }
 
         .action-hero h1 {
-            font-family: var(--font-cyber); font-size: clamp(2rem, 5vw, 3.5rem);
-            color: var(--neon-yellow); text-shadow: 0 0 20px var(--neon-yellow);
-            margin-bottom: 20px;
+            font-family: var(--font-cyber); 
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            color: var(--neon-yellow); 
+            text-shadow: 0 0 30px var(--neon-yellow);
+            margin-bottom: 25px;
+            line-height: 1.1;
         }
 
-        /* --- TIMELINE --- */
+        .action-hero p {
+            max-width: 850px;
+            margin: 0 auto;
+            font-size: 1.2rem;
+            color: #aaa;
+            font-weight: 300;
+        }
+
+        /* EXPANDED TIMELINE SYSTEM (PHASE 01 - 12)
+        */
         .timeline {
-            max-width: 1000px; margin: 50px auto; padding: 20px;
-            position: relative; overflow: hidden;
+            max-width: 1100px; 
+            margin: 80px auto; 
+            padding: 40px 20px;
+            position: relative; 
+            overflow: hidden;
         }
 
         .timeline::before {
-            content: ''; position: absolute; left: 50%; width: 2px; height: 100%;
-            background: rgba(255, 242, 0, 0.2); transform: translateX(-50%);
+            content: ''; 
+            position: absolute; 
+            left: 50%; 
+            width: 2px; 
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, var(--neon-yellow), transparent); 
+            transform: translateX(-50%);
+            opacity: 0.3;
         }
 
         .timeline-item {
-            width: 45%; margin-bottom: 60px; position: relative;
-            background: var(--glass); border: 1px solid rgba(255,242,0,0.1);
-            padding: 30px; border-radius: 15px; transition: 0.4s;
+            width: 46%; 
+            margin-bottom: 80px; 
+            position: relative;
+            background: var(--glass-panel); 
+            border: 1px solid var(--border-glow);
+            padding: 35px; 
+            border-radius: 20px; 
+            transition: var(--transition-speed);
+            backdrop-filter: blur(10px);
         }
 
         .timeline-item:nth-child(odd) { float: left; clear: right; }
-        .timeline-item:nth-child(even) { float: right; clear: left; margin-top: 50px; }
+        .timeline-item:nth-child(even) { float: right; clear: left; margin-top: 60px; }
 
         .timeline-item::after {
-            content: ''; position: absolute; top: 30px; width: 20px; height: 20px;
-            background: var(--neon-yellow); border-radius: 50%; box-shadow: 0 0 10px var(--neon-yellow);
+            content: ''; 
+            position: absolute; 
+            top: 35px; 
+            width: 16px; 
+            height: 16px;
+            background: var(--neon-yellow); 
+            border-radius: 50%; 
+            box-shadow: 0 0 15px var(--neon-yellow);
+            z-index: 5;
         }
 
-        .timeline-item:nth-child(odd)::after { right: -60px; }
-        .timeline-item:nth-child(even)::after { left: -60px; }
+        .timeline-item:nth-child(odd)::after { right: -58px; }
+        .timeline-item:nth-child(even)::after { left: -58px; }
 
         .timeline-item:hover {
-            border-color: var(--neon-yellow); background: rgba(255,242,0,0.08);
-            transform: translateY(-5px);
+            border-color: var(--neon-yellow); 
+            background: rgba(255,242,0,0.08);
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        .time-tag { font-family: var(--font-mono); color: var(--neon-yellow); font-size: 0.8rem; font-weight: bold; }
-        .timeline-item h3 { font-family: var(--font-cyber); font-size: 1.1rem; margin: 10px 0; color: #fff; }
+        .time-tag { 
+            font-family: var(--font-mono); 
+            color: var(--neon-yellow); 
+            font-size: 0.8rem; 
+            font-weight: bold; 
+            display: block;
+            margin-bottom: 15px;
+        }
 
-        /* --- VIDEO SECTION --- */
+        .timeline-item h3 { 
+            font-family: var(--font-cyber); 
+            font-size: 1.2rem; 
+            margin-bottom: 15px; 
+            color: #ffffff; 
+            letter-spacing: 1px;
+        }
+
+        .timeline-item p {
+            font-size: 0.95rem;
+            color: #bbb;
+            text-align: justify;
+        }
+
+        /* TECHNICAL SPECIFICATIONS TABLE 
+        */
+        .tech-specs-section {
+            padding: 100px 10%;
+            background: rgba(255, 242, 0, 0.01);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-family: var(--font-cyber);
+            color: var(--neon-yellow);
+            font-size: 2rem;
+            text-shadow: 0 0 15px var(--neon-yellow);
+        }
+
+        .specs-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: var(--font-mono);
+            background: rgba(0,0,0,0.3);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .specs-table th {
+            padding: 20px;
+            text-align: left;
+            background: rgba(255, 242, 0, 0.1);
+            color: var(--neon-yellow);
+            border-bottom: 2px solid var(--neon-yellow);
+        }
+
+        .specs-table td {
+            padding: 18px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            color: #ccc;
+        }
+
+        .specs-table tr:hover td {
+            background: rgba(255, 242, 0, 0.03);
+            color: #fff;
+        }
+
+        /* WEEKLY LOG STYLING 
+        */
+        .weekly-log-section {
+            padding: 100px 10%;
+        }
+
+        .log-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .log-card {
+            background: #111;
+            padding: 30px;
+            border: 1px solid #222;
+            border-radius: 15px;
+            transition: 0.3s;
+        }
+
+        .log-card:hover {
+            border-color: var(--neon-green);
+            transform: scale(1.03);
+        }
+
+        .log-card .week-num {
+            font-family: var(--font-mono);
+            color: var(--neon-green);
+            font-size: 0.75rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        /* VIDEO CONTAINER 
+        */
         .video-container {
-            max-width: 900px; margin: 80px auto; padding: 0 20px;
+            max-width: 1000px; 
+            margin: 100px auto; 
+            padding: 0 20px;
         }
 
         .video-wrapper {
             position: relative;
-            padding-bottom: 56.25%; /* Tỉ lệ 16:9 chuẩn */
-            height: 0; overflow: hidden;
-            border-radius: 20px;
+            padding-bottom: 56.25%;
+            height: 0; 
+            overflow: hidden;
+            border-radius: 25px;
             border: 1px solid var(--neon-yellow);
-            box-shadow: 0 0 30px rgba(255, 242, 0, 0.15);
+            box-shadow: 0 0 40px rgba(255, 242, 0, 0.2);
             background: #000;
         }
 
         .video-wrapper iframe {
-            position: absolute; top: 0; left: 0;
-            width: 100%; height: 100%; border: none;
+            position: absolute; 
+            top: 0; 
+            left: 0;
+            width: 100%; 
+            height: 100%; 
+            border: none;
         }
 
-        /* --- CARDS --- */
-        .call-action {
-            max-width: 1200px; margin: 100px auto; padding: 0 20px;
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;
+        /* STANDARD OPERATING PROCEDURES (SOP) 
+        */
+        .sop-section {
+            padding: 100px 10%;
+            background: #0a0a0a;
         }
 
-        .action-card {
-            background: #111; padding: 40px; border-radius: 20px;
-            text-align: center; border-bottom: 4px solid transparent;
-            transition: 0.3s;
+        .sop-list {
+            list-style: none;
+            counter-reset: sop-counter;
         }
 
-        .action-card:hover { border-bottom-color: var(--neon-green); transform: scale(1.05); }
-        .action-card h4 { font-family: var(--font-cyber); color: var(--neon-green); margin-bottom: 20px; }
+        .sop-step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: rgba(255,255,255,0.02);
+            border-radius: 15px;
+            border-left: 4px solid var(--neon-yellow);
+        }
 
-        footer { padding: 60px; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
+        .sop-step::before {
+            counter-increment: sop-counter;
+            content: "0" counter(sop-counter);
+            font-family: var(--font-cyber);
+            font-size: 2rem;
+            color: var(--neon-yellow);
+            margin-right: 30px;
+            opacity: 0.5;
+        }
 
-        .timeline::after { content: ""; display: table; clear: both; }
+        .sop-step-content h4 {
+            font-family: var(--font-cyber);
+            margin-bottom: 10px;
+            color: var(--neon-yellow);
+        }
 
+        /* FOOTER 
+        */
+        footer { 
+            padding: 80px 10%; 
+            text-align: center; 
+            border-top: 1px solid rgba(255,255,255,0.05); 
+            background: #000;
+        }
+
+        .footer-logo {
+            font-family: var(--font-cyber);
+            color: var(--neon-yellow);
+            font-size: 1rem;
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+        }
+
+        /* RESPONSIVE ADJUSTMENTS 
+        */
         @media (max-width: 768px) {
             .timeline::before { left: 20px; }
             .timeline-item { width: 90%; float: none !important; margin-left: 50px !important; }
             .timeline-item::after { left: -40px !important; }
-            .call-action { grid-template-columns: 1fr; }
+            nav ul { display: none; } /* Mobile Menu Placeholder */
         }
     </style>
 </head>
@@ -169,91 +403,269 @@
     </nav>
 
     <section class="action-hero">
-        <div style="font-family: var(--font-mono); color: var(--neon-yellow); font-size: 0.8rem; margin-bottom: 15px;">
-            > PHASE_INITIATION // EXECUTION_MODE
-        </div>
+        <div class="terminal-tag">> SYSTEM_STATUS: OPERATIONAL // MODE: EXECUTION_V4.0</div>
         <h1>LỘ TRÌNH CHIẾN LƯỢC</h1>
-        <p>Từ ý tưởng đến thực thi - Nhóm K-A-V-P cam kết hiện thực hóa mô hình Y tế xanh tại TP.HCM.</p>
+        <p>Phác thảo kế hoạch hành động chi tiết của nhóm K-A-V-P từ khâu nghiên cứu lý thuyết đến triển khai hệ thống xử lý rác thải vi sóng thông minh tại TP.HCM.</p>
     </section>
 
     <main>
         <section class="timeline">
             <div class="timeline-item">
-                <span class="time-tag">GIAI ĐOẠN 01: KHẢO SÁT</span>
+                <span class="time-tag">GIAI ĐOẠN 01: KHẢO SÁT & THU THẬP DỮ LIỆU</span>
                 <h3>Phân tích dữ liệu thực tế</h3>
-                <p>Khảo sát tại các bệnh viện lớn TP.HCM để đánh giá khối lượng rác thải y tế phát sinh.</p>
+                <p>Tiến hành khảo sát tại 5 bệnh viện lớn tại TP.HCM (Chợ Rẫy, Từ Dũ, Gia Định...) để đánh giá chính xác khối lượng và thành phần rác thải y tế phát sinh mỗi ngày. Kết quả cho thấy tỷ lệ nhựa dùng một lần chiếm tới 45% tổng lượng rác.</p>
             </div>
 
             <div class="timeline-item">
-                <span class="time-tag">GIAI ĐOẠN 02: THIẾT KẾ</span>
-                <h3>Mô phỏng hệ thống Vi sóng</h3>
-                <p>Xây dựng mô hình 3D cho trạm xử lý mini tích hợp IoT giám sát khí thải thời gian thực.</p>
+                <span class="time-tag">GIAI ĐOẠN 02: THIẾT KẾ MÔ HÌNH HỆ THỐNG</span>
+                <h3>Mô phỏng 3D hệ thống xử lý</h3>
+                <p>Xây dựng mô hình 3D cho trạm xử lý vi sóng mini. Thiết kế tích hợp các module IoT để giám sát nồng độ khí thải và nhiệt độ tiệt trùng theo thời gian thực, đảm bảo hệ thống vận hành an toàn trong môi trường đô thị đông đúc.</p>
             </div>
 
             <div class="timeline-item">
-                <span class="time-tag">GIAI ĐOẠN 03: THỬ NGHIỆM</span>
-                <h3>Triển khai Node đầu tiên</h3>
-                <p>Lắp đặt trạm thử nghiệm tại cơ sở y tế quận. Số hóa quy trình theo dõi rác qua app di động.</p>
+                <span class="time-tag">GIAI ĐOẠN 03: PHÁT TRIỂN PHẦN MỀM QUẢN LÝ</span>
+                <h3>Hệ thống Database & Dashboard</h3>
+                <p>Phát triển nền tảng số hóa để quản lý quy trình từ khâu tiếp nhận rác đến khi tiệt trùng xong. Hệ thống cho phép các bệnh viện theo dõi chỉ số Log Reduction (khả năng tiêu diệt vi khuẩn) trực tiếp trên điện thoại.</p>
             </div>
 
             <div class="timeline-item">
-                <span class="time-tag">GIAI ĐOẠN 04: NHÂN RỘNG</span>
-                <h3>Kết nối mạng lưới Xanh</h3>
-                <p>Mở rộng mô hình ra toàn thành phố, tối ưu hóa lộ trình thu gom rác thông minh.</p>
+                <span class="time-tag">GIAI ĐOẠN 04: KIỂM ĐỊNH & HỢP CHUẨN</span>
+                <h3>Đánh giá tác động môi trường</h3>
+                <p>Làm việc với các chuyên gia môi trường để kiểm định khả năng loại bỏ Dioxin và Furan của công nghệ vi sóng. Đảm bảo quy trình xử lý không sinh ra các sản phẩm phụ độc hại, đạt tiêu chuẩn khắt khe của Bộ Y tế.</p>
             </div>
+
+            <div class="timeline-item">
+                <span class="time-tag">GIAI ĐOẠN 05: THỬ NGHIỆM TẠI NODE ĐIỂM</span>
+                <h3>Vận hành Node đầu tiên (Pilot)</h3>
+                <p>Lắp đặt trạm thử nghiệm tại một cơ sở y tế quận trung tâm. Theo dõi hiệu suất tiệt trùng đối với các nhóm rác thải sắc nhọn và rác lây nhiễm cao trong vòng 30 ngày liên tục.</p>
+            </div>
+
+            <div class="timeline-item">
+                <span class="time-tag">GIAI ĐOẠN 06: ĐÀO TẠO & CHUYỂN GIAO</span>
+                <h3>Huấn luyện nhân sự vận hành</h3>
+                <p>Tổ chức các khóa đào tạo cho đội ngũ nhân viên y tế về cách phân loại rác tại nguồn và quy trình nạp liệu an toàn vào hệ thống vi sóng. Xây dựng bộ quy tắc ứng xử khi có sự cố kỹ thuật xảy ra.</p>
+            </div>
+
+            <div class="timeline-item">
+                <span class="time-tag">GIAI ĐOẠN 07: KẾT NỐI MẠNG LƯỚI LIÊN QUẬN</span>
+                <h3>Hệ thống thu gom thông minh</h3>
+                <p>Mở rộng mạng lưới xử lý ra các cụm bệnh viện lân cận. Tối ưu hóa lộ trình thu gom bằng AI để giảm chi phí vận chuyển và tránh kẹt xe trong giờ cao điểm của TP.HCM.</p>
+            </div>
+
+            <div class="timeline-item">
+                <span class="time-tag">GIAI ĐOẠN 08: TUYÊN TRUYỀN CỘNG ĐỒNG</span>
+                <h3>Chiến dịch "Y Tế Không Rác Thải"</h3>
+                <p>Tổ chức các workshop và buổi tọa đàm tại trường học, bệnh viện nhằm nâng cao nhận thức về nguy cơ từ rác thải y tế nếu xử lý không đúng cách bằng lò đốt truyền thống.</p>
+            </div>
+
+            <div class="timeline-item">
+                <span class="time-tag">GIAI ĐOẠN 09: NÂNG CẤP CÔNG NGHỆ BẢO TRÌ</span>
+                <h3>Hệ thống tự chẩn đoán (Self-Diag)</h3>
+                <p>Tích hợp thuật toán Machine Learning vào hệ thống để dự báo thời điểm cần bảo trì Magnetron (linh kiện phát sóng) trước khi hỏng hóc, đảm bảo hệ thống luôn sẵn sàng 24/7.</p>
+            </div>
+
+            <div class="timeline-item">
+                <span class="time-tag">GIAI ĐOẠN 10: TÁI CHẾ ĐẦU RA (WASTE-TO-RESOURCE)</span>
+                <h3>Hệ thống nghiền và tái chế nhựa</h3>
+                <p>Nghiên cứu quy trình tái chế nhựa y tế đã tiệt trùng (sau khi qua lò vi sóng) thành các vật liệu xây dựng hoặc đồ dùng thông thường, khép kín vòng đời sản phẩm.</p>
+            </div>
+
+            <div class="timeline-item">
+                <span class="time-tag">GIAI ĐOẠN 11: NHÂN RỘNG TOÀN THÀNH PHỐ</span>
+                <h3>Phủ xanh mạng lưới xử lý rác</h3>
+                <p>Triển khai lắp đặt đồng bộ tại tất cả các quận huyện. Hướng tới mục tiêu TP.HCM là thành phố đầu tiên tại Việt Nam xử lý 100% rác thải y tế bằng công nghệ xanh không khói.</p>
+            </div>
+
+            <div class="timeline-item">
+                <span class="time-tag">GIAI ĐOẠN 12: ĐÁNH GIÁ TỔNG KẾT & PHÁT TRIỂN</span>
+                <h3>Báo cáo chiến lược 2030</h3>
+                <p>Tổng kết hiệu quả giảm thiểu phát thải khí nhà kính và tiết kiệm chi phí cho ngân sách thành phố. Đề xuất mở rộng mô hình sang các tỉnh thành lân cận trong khu vực phía Nam.</p>
+            </div>
+            
+            <div style="clear: both;"></div>
         </section>
 
+        <section class="tech-specs-section">
+            <div class="section-header">
+                <h2>BẢNG THÔNG SỐ KỸ THUẬT HỆ THỐNG</h2>
+            </div>
+            <table class="specs-table">
+                <thead>
+                    <tr>
+                        <th>HẠNG MỤC THÔNG SỐ</th>
+                        <th>GIÁ TRỊ / ĐƠN VỊ</th>
+                        <th>MÔ TẢ KỸ THUẬT</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Tần số phát sóng</td><td>2,450 MHz ± 50 MHz</td><td>Tần số tiêu chuẩn tối ưu hóa cho phân tử nước</td></tr>
+                    <tr><td>Công suất tiệt trùng</td><td>150 kg / chu kỳ</td><td>Có thể tùy chỉnh theo Module lắp ghép</td></tr>
+                    <tr><td>Nhiệt độ hoạt động</td><td>110°C - 165°C</td><td>Đảm bảo tiêu diệt bào tử vi khuẩn Log 6</td></tr>
+                    <tr><td>Tiêu thụ điện năng</td><td>0.55 kWh / kg rác</td><td>Tiết kiệm 40% so với phương pháp hấp cao áp</td></tr>
+                    <tr><td>Thời gian chu kỳ xử lý</td><td>35 - 50 phút</td><td>Bao gồm giai đoạn làm mát cưỡng bức</td></tr>
+                    <tr><td>Áp suất buồng xử lý</td><td>-0.5 bar (Chân không)</td><td>Ngăn chặn rò rỉ khí độc ra bên ngoài</td></tr>
+                    <tr><td>Hệ thống lọc khí</td><td>Carbon Active + HEPA</td><td>Loại bỏ hoàn toàn mùi hôi và vi khuẩn siêu nhỏ</td></tr>
+                    <tr><td>Độ ồn vận hành</td><td>&lt; 65 dB</td><td>Phù hợp lắp đặt ngay trong khuôn viên bệnh viện</td></tr>
+                    <tr><td>Vật liệu buồng đốt</td><td>Thép không gỉ 316L</td><td>Chống ăn mòn hóa học và chịu nhiệt cực tốt</td></tr>
+                    <tr><td>Cảm biến IoT tích hợp</td><td>Temp, Pressure, Emission</td><td>Gửi dữ liệu qua giao thức MQTT liên tục</td></tr>
+                </tbody>
+            </table>
+        </section>
         <section class="video-container">
-            <h2 style="text-align: center; font-family: var(--font-cyber); color: var(--neon-yellow); margin-bottom: 30px;">
-                TRỰC QUAN QUY TRÌNH XỬ LÝ
-            </h2>
+            <div class="section-header">
+                <h2>TRỰC QUAN QUY TRÌNH XỬ LÝ</h2>
+            </div>
             <div class="video-wrapper">
                 <iframe 
                     src="https://www.youtube.com/embed/bzgFDbDXNDo" 
-                    title="Quy trình xử lý rác VWS" 
+                    title="Quy trình xử lý rác HCMC Green Tech" 
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                     allowfullscreen>
                 </iframe>
             </div>
-            <p style="text-align: center; font-family: var(--font-mono); font-size: 0.7rem; color: var(--neon-yellow); margin-top: 15px; opacity: 0.7;">
-                > SOURCE_VIDEO: HTV Tin Tức / Vietnam Waste Solutions
+            <p style="text-align: center; font-family: var(--font-mono); font-size: 0.75rem; color: var(--neon-yellow); margin-top: 20px; opacity: 0.8;">
+                > VIDEO_FILE: HTV_NEWS_ARCHIVE_2025 // SOURCE: HTV / VWS
             </p>
         </section>
-
-        <section class="call-action">
-            <div class="action-card">
-                <h4>TUYÊN TRUYỀN</h4>
-                <p>Chiến dịch "Bệnh viện không rác nhựa" tại các cơ sở thực tập ngành Y.</p>
+        <section class="sop-section">
+            <div class="section-header">
+                <h2>QUY TRÌNH VẬN HÀNH CHUẨN (SOP)</h2>
             </div>
-            <div class="action-card">
-                <h4>HỢP TÁC</h4>
-                <p>Làm việc với chuyên gia để chuẩn hóa quy trình khử khuẩn sóng ngắn.</p>
-            </div>
-            <div class="action-card">
-                <h4>GIÁO DỤC</h4>
-                <p>Workshop cho học sinh về vai trò công nghệ trong y tế hiện đại.</p>
+            <div class="sop-list">
+                <div class="sop-step">
+                    <div class="sop-step-content">
+                        <h4>SOP-01: PHÂN LOẠI TẠI NGUỒN</h4>
+                        <p>Toàn bộ rác thải lây nhiễm phải được đựng trong túi màu vàng tiêu chuẩn, buộc chặt và dán mã định danh bệnh viện.</p>
+                    </div>
+                </div>
+                <div class="sop-step">
+                    <div class="sop-step-content">
+                        <h4>SOP-02: KIỂM TRA TRỌNG LƯỢNG</h4>
+                        <p>Tiến hành cân điện tử để đảm bảo mẻ rác không vượt quá công suất tối đa của buồng vi sóng (tránh hiện tượng quá nhiệt).</p>
+                    </div>
+                </div>
+                <div class="sop-step">
+                    <div class="sop-step-content">
+                        <h4>SOP-03: NẠP LIỆU CHÂN KHÔNG</h4>
+                        <p>Đưa rác vào buồng và kích hoạt hệ thống hút chân không để loại bỏ túi khí, giúp sóng vi sóng tác động sâu vào lõi rác.</p>
+                    </div>
+                </div>
+                <div class="sop-step">
+                    <div class="sop-step-content">
+                        <h4>SOP-04: KÍCH HOẠT MAGNETRON</h4>
+                        <p>Bắt đầu quá trình phát sóng. Hệ thống tự động điều chỉnh tần số dựa trên cảm biến độ ẩm của mẻ rác hiện tại.</p>
+                    </div>
+                </div>
+                <div class="sop-step">
+                    <div class="sop-step-content">
+                        <h4>SOP-05: DUY TRÌ NHIỆT ĐỘ TIỆT TRÙNG</h4>
+                        <p>Giữ mẻ rác ở ngưỡng nhiệt độ 140 độ C trong ít nhất 20 phút để tiêu diệt các bào tử vi khuẩn kháng nhiệt nhất.</p>
+                    </div>
+                </div>
+                <div class="sop-step">
+                    <div class="sop-step-content">
+                        <h4>SOP-06: LÀM MÁT CƯỠNG BỨC</h4>
+                        <p>Sau khi tiệt trùng, hệ thống phun sương làm mát và quạt công suất lớn sẽ hạ nhiệt độ buồng về mức an toàn (40 độ C).</p>
+                    </div>
+                </div>
+                <div class="sop-step">
+                    <div class="sop-step-content">
+                        <h4>SOP-07: NGHIỀN HỦY HÌNH DẠNG</h4>
+                        <p>Rác sau tiệt trùng được đưa qua bộ phận máy nghiền để hủy hoàn toàn hình dạng (tránh việc tái sử dụng rác y tế trái phép).</p>
+                    </div>
+                </div>
+                <div class="sop-step">
+                    <div class="sop-step-content">
+                        <h4>SOP-08: KIỂM TRA CHẤT LƯỢNG ĐẦU RA</h4>
+                        <p>Lấy mẫu ngẫu nhiên để test vi sinh nhanh, đảm bảo không còn mầm bệnh trước khi chuyển sang bãi rác sinh hoạt.</p>
+                    </div>
+                </div>
+                <div class="sop-step">
+                    <div class="sop-step-content">
+                        <h4>SOP-09: LOG DỮ LIỆU LÊN HỆ THỐNG</h4>
+                        <p>Mọi thông số về thời gian, nhiệt độ và người vận hành được tự động đẩy lên Database Cloud để phục vụ công tác thanh tra.</p>
+                    </div>
+                </div>
+                <div class="sop-step">
+                    <div class="sop-step-content">
+                        <h4>SOP-10: VỆ SINH BUỒNG XỬ LÝ</h4>
+                        <p>Thực hiện quy trình khử khuẩn buồng trống trước khi tiếp nhận mẻ rác tiếp theo. Kiểm tra định kỳ các ron cao su chống rò rỉ.</p>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
 
     <footer>
-        <p style="font-family: var(--font-cyber); color: var(--neon-yellow); font-size: 0.7rem;">
-            © 2026 HCMC GREEN TECH | ROADMAP BY K-A-V-P TEAM
+        <div class="footer-logo">HCMC GREEN TECH Project</div>
+        <p style="font-family: var(--font-cyber); color: var(--neon-yellow); font-size: 0.75rem; letter-spacing: 2px;">
+            © 2026 NHÓM DỰ ÁN K-A-V-P | THPT NGUYỄN THƯỢNG HIỀN
+        </p>
+        <p style="font-family: var(--font-mono); font-size: 0.65rem; color: #333; margin-top: 15px;">
+            CODE_INTEGRITY: SECURE // REVISION: 4.1.0 // PROJECT_ID: GDDP_12
         </p>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
+        /* INITIALIZING PARTICLES BACKGROUND 
+           Theme: Neon Yellow Particles for Cyberpunk Vibe
+        */
         particlesJS('particles-js', {
             "particles": {
-                "number": { "value": 50, "density": { "enable": true, "value_area": 800 } },
+                "number": { 
+                    "value": 60, 
+                    "density": { "enable": true, "value_area": 1000 } 
+                },
                 "color": { "value": "#fff200" },
-                "opacity": { "value": 0.2 },
-                "size": { "value": 2 },
-                "line_linked": { "enable": true, "distance": 150, "color": "#fff200", "opacity": 0.1, "width": 1 },
-                "move": { "enable": true, "speed": 1.5 }
+                "shape": { "type": "circle" },
+                "opacity": { 
+                    "value": 0.2, 
+                    "random": true, 
+                    "anim": { "enable": true, "speed": 1, "opacity_min": 0.1 }
+                },
+                "size": { 
+                    "value": 2, 
+                    "random": true 
+                },
+                "line_linked": { 
+                    "enable": true, 
+                    "distance": 180, 
+                    "color": "#fff200", 
+                    "opacity": 0.08, 
+                    "width": 1 
+                },
+                "move": { 
+                    "enable": true, 
+                    "speed": 1.5, 
+                    "direction": "none", 
+                    "random": true 
+                }
+            },
+            "interactivity": {
+                "events": {
+                    "onhover": { "enable": true, "mode": "grab" },
+                    "onclick": { "enable": true, "mode": "push" }
+                }
             }
         });
+
+        /* NAVBAR SCROLL EFFECT
+           Changes background opacity for better readability
+        */
+        window.addEventListener('scroll', function() {
+            var nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.padding = '15px 8%';
+                nav.style.background = 'rgba(0, 0, 0, 1)';
+            } else {
+                nav.style.padding = '25px 8%';
+                nav.style.background = 'rgba(0, 0, 0, 0.95)';
+            }
+        });
+
+        /* CONSOLE WELCOME LOG */
+        console.log("%c [HCMC GREEN TECH] SYSTEM INITIALIZED: ACTION_MODULE ", "color: #fff200; font-weight: bold; background: #000; padding: 10px;");
     </script>
 </body>
 </html>
