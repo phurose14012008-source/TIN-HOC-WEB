@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BÁO CÁO CHI TIẾT | HCMC GREEN TECH</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Quicksand:wght@300;500;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --neon-green: #39ff14;
+            --dark-bg: #020505;
+            --glass: rgba(255, 255, 255, 0.03);
+            --font-cyber: 'Orbitron', sans-serif;
+            --font-mono: 'Roboto Mono', monospace;
+            --error-red: #ff3131;
+            --warning-orange: #ff8c00;
+            --info-blue: #00f2ff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        
+        body {
+            background-color: var(--dark-bg);
+            color: #fff;
+            font-family: 'Quicksand', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.8;
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            position: fixed; top: 0; width: 100%;
+            padding: 20px 8%;
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(0, 0, 0, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(57, 255, 20, 0.3);
+        }
+
+        .logo {
+            font-family: var(--font-cyber); font-size: 1.5rem;
+            color: var(--neon-green); text-shadow: 0 0 15px var(--neon-green);
+            text-decoration: none; font-weight: 900;
+        }
+
+        nav ul { display: flex; list-style: none; gap: 30px; }
+        nav ul li a {
+            text-decoration: none; color: #fff;
+            font-family: var(--font-cyber); font-size: 0.8rem;
+            letter-spacing: 1px; transition: 0.3s;
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            color: var(--neon-green); text-shadow: 0 0 10px var(--neon-green);
+        }
+
+        /* --- BACKGROUND PARTICLES --- */
+        #particles-js { position: fixed; width: 100%; height: 100%; z-index: -1; }
+
+        /* --- HERO ADVANCED --- */
+        .hero-detailed {
+            padding: 200px 10% 100px;
+            text-align: center;
+            background: radial-gradient(circle at center, rgba(255,49,49,0.1) 0%, transparent 70%);
+        }
+
+        .hero-detailed .badge {
+            display: inline-block; padding: 5px 15px; background: var(--error-red);
+            font-family: var(--font-mono); font-size: 0.7rem; border-radius: 4px;
+            margin-bottom: 20px; animation: blink 1s infinite;
+        }
+
+        @keyframes blink { 50% { opacity: 0.5; } }
+
+        .hero-detailed h1 {
+            font-family: var(--font-cyber); font-size: clamp(2.5rem, 7vw, 4.5rem);
+            color: #fff; margin-bottom: 30px; text-transform: uppercase;
+        }
+
+        /* --- ANALYTICS CARDS --- */
+        .analytics-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr);
+            gap: 20px; margin: -50px 10% 80px;
+        }
+
+        .ana-card {
+            background: #0a0a0a; border: 1px solid rgba(255,255,255,0.1);
+            padding: 30px; border-radius: 10px; position: relative;
+            transition: 0.4s; overflow: hidden;
+        }
+
+        .ana-card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%;
+            background: var(--neon-green);
+        }
+
+        .ana-card:hover { transform: scale(1.05); border-color: var(--neon-green); }
+        .ana-card h3 { font-family: var(--font-mono); font-size: 0.8rem; color: #888; }
+        .ana-card .value { font-family: var(--font-cyber); font-size: 2rem; color: #fff; margin: 10px 0; }
+
+        /* --- DEEP ANALYSIS SECTION --- */
+        .content-section { padding: 80px 10%; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+
+        .report-box { background: var(--glass); padding: 40px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05); }
+        .report-box h2 { font-family: var(--font-cyber); color: var(--neon-green); margin-bottom: 25px; font-size: 1.5rem; }
+        .report-box p { margin-bottom: 20px; color: #ccc; }
+
+        /* --- BIOLOGICAL IMPACT (FOR MEDICAL STUDENT) --- */
+        .medical-impact {
+            background: rgba(255, 49, 49, 0.03); border: 1px solid var(--error-red);
+            padding: 40px; border-radius: 20px; margin: 40px 10%;
+        }
+
+        .medical-impact h2 { font-family: var(--font-cyber); color: var(--error-red); margin-bottom: 30px; }
+        
+        .impact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .impact-item { padding: 20px; background: rgba(0,0,0,0.3); border-radius: 10px; }
+        .impact-item h4 { color: var(--info-blue); font-family: var(--font-mono); margin-bottom: 10px; }
+
+        /* --- ADVANCED TABLE --- */
+        .table-section { padding: 80px 10%; }
+        .table-section h2 { font-family: var(--font-cyber); text-align: center; margin-bottom: 50px; }
+
+        .custom-table { width: 100%; border-collapse: separate; border-spacing: 0 10px; }
+        .custom-table th { font-family: var(--font-cyber); font-size: 0.7rem; color: var(--neon-green); padding: 20px; text-align: left; background: #000; }
+        .custom-table td { background: #080808; padding: 20px; font-size: 0.9rem; border-y: 1px solid rgba(255,255,255,0.05); }
+        .custom-table tr:hover td { background: #111; color: var(--neon-green); }
+
+        /* --- CHART JS SIMULATION --- */
+        .chart-visual { height: 300px; display: flex; align-items: flex-end; gap: 20px; padding: 20px; border-bottom: 2px solid #333; border-left: 2px solid #333; }
+        .bar { width: 40px; background: var(--neon-green); position: relative; transition: 1s; }
+        .bar::after { content: attr(data-label); position: absolute; bottom: -30px; left: 0; font-size: 0.6rem; white-space: nowrap; font-family: var(--font-mono); }
+
+        footer { background: #000; padding: 100px 10% 40px; text-align: center; border-top: 1px solid #111; }
+
+        @media (max-width: 1024px) {
+            .analytics-grid { grid-template-columns: 1fr 1fr; }
+            .content-section { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="particles-js"></div>
+
+    <nav>
+        <a href="index.html" class="logo">HCMC GREEN TECH</a>
+        <ul>
+            <li><a href="index.html">TRANG CHỦ</a></li>
+            <li><a href="thuc-trang.html" class="active">THỰC TRẠNG</a></li>
+            <li><a href="y-te.html">Y TẾ XANH</a></li>
+            <li><a href="hanh-dong.html">HÀNH ĐỘNG</a></li>
+            <li><a href="lien-he.html">LIÊN HỆ</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero-detailed">
+        <span class="badge">CRITICAL ALERT: SYSTEM_ANALYSIS_ACTIVE</span>
+        <h1>BÁO CÁO Ô NHIỄM <br> ĐÔ THỊ 2026</h1>
+        <p style="max-width: 800px; margin: 0 auto; color: #888; font-size: 1.1rem;">
+            Dữ liệu tổng hợp về rác thải sinh hoạt và y tế tại khu vực TP. Hồ Chí Minh. Phân tích các rủi ro sinh học tiềm ẩn đối với sức khỏe cộng đồng.
+        </p>
+    </header>
+
+    <section class="analytics-grid">
+        <div class="ana-card">
+            <h3>TỔNG RÁC THẢI / NGÀY</h3>
+            <div class="value">9,500T</div>
+            <p style="font-size: 0.7rem; color: var(--error-red);">↑ 4.2% so với 2025</p>
+        </div>
+        <div class="ana-card">
+            <h3>TỶ LỆ CHÔN LẤP</h3>
+            <div class="value">69%</div>
+            <p style="font-size: 0.7rem; color: var(--warning-orange);">Ngưỡng báo động</p>
+        </div>
+        <div class="ana-card">
+            <h3>RÁC Y TẾ NGUY HẠI</h3>
+            <div class="value">42T</div>
+            <p style="font-size: 0.7rem; color: var(--info-blue);">Cần xử lý đặc biệt</p>
+        </div>
+        <div class="ana-card">
+            <h3>PHÁT THẢI CO2/NĂM</h3>
+            <div class="value">2.4M</div>
+            <p style="font-size: 0.7rem; color: var(--neon-green);">Đơn vị: Tấn</p>
+        </div>
+    </section>
+
+    <main>
+        <section class="content-section">
+            <div class="report-box">
+                <h2>1. ÁP LỰC HẠ TẦNG</h2>
+                <p>Hiện nay, TP.HCM dựa chủ yếu vào <b>Khu liên hợp xử lý chất thải Đa Phước</b>. Tuy nhiên, mô hình chôn lấp lộ thiên đã không còn phù hợp với một siêu đô thị đang phát triển.</p>
+                <p>Mùi hôi phát tán trong bán kính 10km ảnh hưởng trực tiếp đến đời sống cư dân các khu vực lân cận như Quận 7, Nhà Bè và Bình Chánh.</p>
+                <div class="chart-visual">
+                    <div class="bar" style="height: 90%;" data-label="Đa Phước"></div>
+                    <div class="bar" style="height: 40%; background: #444;" data-label="Củ Chi"></div>
+                    <div class="bar" style="height: 20%; background: #444;" data-label="Khác"></div>
+                </div>
+            </div>
+            <div class="report-box">
+                <h2>2. RÁC THẢI NHỰA</h2>
+                <p>Tỷ lệ rác nhựa chiếm hơn 18% tổng lượng rác thải. Phần lớn là nhựa dùng một lần từ các hoạt động thương mại và dịch vụ.</p>
+                <p>Việc không phân loại rác tại nguồn (PLRTN) dẫn đến quá trình tái chế bị đình trệ, gây lãng phí tài nguyên và ô nhiễm hạt vi nhựa trong lòng đất.</p>
+                <ul style="list-style: none; font-family: var(--font-mono); font-size: 0.8rem; color: var(--neon-green);">
+                    <li>> Mất 450 năm để phân hủy 01 chai nhựa.</li>
+                    <li>> 12% rác thải nhựa trôi ra kênh rạch.</li>
+                    <li>> 100% rác thải nhựa sinh ra hạt vi nhựa.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="medical-impact">
+            <h2>HỆ LỤY SINH HỌC & Y TẾ</h2>
+            <div class="impact-grid">
+                <div class="impact-item">
+                    <h4>DIOXIN & FURAN</h4>
+                    <p>Sản phẩm phụ từ việc đốt rác y tế ở nhiệt độ thấp. Đây là các chất gây biến đổi cấu trúc DNA, dẫn đến ung thư và dị tật bẩm sinh.</p>
+                </div>
+                <div class="impact-item">
+                    <h4>KHÁNG KHÁNG SINH</h4>
+                    <p>Việc xả thải dược phẩm chưa qua xử lý ra môi trường tạo điều kiện cho vi khuẩn phát triển cơ chế kháng thuốc (Superbugs).</p>
+                </div>
+                <div class="impact-item">
+                    <h4>Ô NHIỄM VI SINH</h4>
+                    <p>Rác thải lây nhiễm (bông băng, dịch tiết) nếu không được khử khuẩn triệt để sẽ là nguồn phát tán các ổ dịch bệnh nguy hiểm.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="table-section">
+            <h2>DỮ LIỆU THEO DÕI CỤM ĐÔ THỊ</h2>
+            <div style="overflow-x: auto;">
+                <table class="custom-table">
+                    <thead>
+                        <tr>
+                            <th>ID_KHU_VỰC</th>
+                            <th>ĐỊA BÀN TRỌNG ĐIỂM</th>
+                            <th>LƯỢNG RÁC (T/N)</th>
+                            <th>CHỈ SỐ Ô NHIỄM</th>
+                            <th>TÌNH TRẠNG</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#HCM-01</td>
+                            <td>Quận 1, 3, 5 (Cụm Trung Tâm)</td>
+                            <td>~1,800</td>
+                            <td style="color: var(--warning-orange);">MEDIUM</td>
+                            <td>Đang kiểm soát</td>
+                        </tr>
+                        <tr>
+                            <td>#HCM-02</td>
+                            <td>Quận 7, Bình Chánh (Cụm Nam)</td>
+                            <td>~3,200</td>
+                            <td style="color: var(--error-red);">CRITICAL</td>
+                            <td>Quá tải hệ thống</td>
+                        </tr>
+                        <tr>
+                            <td>#HCM-03</td>
+                            <td>TP. Thủ Đức (Cụm Đông)</td>
+                            <td>~2,100</td>
+                            <td style="color: var(--info-blue);">STABLE</td>
+                            <td>Đang nâng cấp WtE</td>
+                        </tr>
+                        <tr>
+                            <td>#HCM-04</td>
+                            <td>Tân Bình, Gò Vấp (Cụm Tây)</td>
+                            <td>~2,400</td>
+                            <td style="color: var(--warning-orange);">HIGH</td>
+                            <td>Cần cải thiện</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; text-align: left; flex-wrap: wrap; gap: 40px;">
+            <div style="flex: 2;">
+                <h3 style="font-family: var(--font-cyber); color: var(--neon-green); margin-bottom: 20px;">HCMC GREEN TECH</h3>
+                <p style="opacity: 0.6; font-size: 0.9rem;">Dự án được phát triển bởi nhóm K-A-V-P (Lớp 12 - THPT Nguyễn Thượng Hiền). Mục tiêu số hóa dữ liệu môi trường và đề xuất giải pháp xử lý rác y tế bằng công nghệ Vi sóng.</p>
+            </div>
+            <div style="flex: 1;">
+                <h4 style="font-family: var(--font-cyber); margin-bottom: 20px;">DỮ LIỆU THAM KHẢO</h4>
+                <ul style="list-style: none; opacity: 0.6; font-size: 0.8rem;">
+                    <li>- Sở Tài nguyên & Môi trường</li>
+                    <li>- Báo cáo môi trường quốc gia</li>
+                    <li>- WHO Medical Waste Guide</li>
+                </ul>
+            </div>
+        </div>
+        <div style="margin-top: 60px; border-top: 1px solid #111; padding-top: 20px; font-family: var(--font-mono); font-size: 0.6rem; color: #444;">
+            CORE_SYSTEM_V3.1.0 // ENCRYPTION: AES-256 // PROJECT_KAVP_2026
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        particlesJS('particles-js', {
+            "particles": {
+                "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+                "color": { "value": "#39ff14" },
+                "opacity": { "value": 0.15 },
+                "size": { "value": 2 },
+                "line_linked": { "enable": true, "distance": 150, "color": "#39ff14", "opacity": 0.05, "width": 1 },
+                "move": { "enable": true, "speed": 0.8 }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HÀNH ĐỘNG | HCMC GREEN TECH</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Quicksand:wght@300;500;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --neon-yellow: #fff200;
+            --neon-green: #39ff14;
+            --dark-bg: #080808;
+            --glass: rgba(255, 242, 0, 0.03);
+            --font-cyber: 'Orbitron', sans-serif;
+            --font-mono: 'Roboto Mono', monospace;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background-color: var(--dark-bg);
+            color: #efefef;
+            font-family: 'Quicksand', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            position: fixed; top: 0; width: 100%;
+            padding: 20px 8%;
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(15px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 242, 0, 0.2);
+        }
+
+        .logo {
+            font-family: var(--font-cyber); font-size: 1.4rem;
+            color: var(--neon-yellow); text-shadow: 0 0 10px var(--neon-yellow);
+            text-decoration: none; font-weight: 900;
+        }
+
+        nav ul { display: flex; list-style: none; gap: 25px; }
+        nav ul li a {
+            text-decoration: none; color: #fff;
+            font-family: var(--font-cyber); font-size: 0.75rem;
+            letter-spacing: 1px; transition: 0.3s;
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            color: var(--neon-yellow); text-shadow: 0 0 8px var(--neon-yellow);
+        }
+
+        #particles-js { position: fixed; width: 100%; height: 100%; z-index: -1; }
+
+        /* --- HERO --- */
+        .action-hero {
+            padding: 160px 10% 60px;
+            text-align: center;
+            background: linear-gradient(to bottom, rgba(255,242,0,0.05), transparent);
+        }
+
+        .action-hero h1 {
+            font-family: var(--font-cyber); font-size: clamp(2rem, 5vw, 3.5rem);
+            color: var(--neon-yellow); text-shadow: 0 0 20px var(--neon-yellow);
+            margin-bottom: 20px;
+        }
+
+        /* --- TIMELINE --- */
+        .timeline {
+            max-width: 1000px; margin: 50px auto; padding: 20px;
+            position: relative; overflow: hidden;
+        }
+
+        .timeline::before {
+            content: ''; position: absolute; left: 50%; width: 2px; height: 100%;
+            background: rgba(255, 242, 0, 0.2); transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            width: 45%; margin-bottom: 60px; position: relative;
+            background: var(--glass); border: 1px solid rgba(255,242,0,0.1);
+            padding: 30px; border-radius: 15px; transition: 0.4s;
+        }
+
+        .timeline-item:nth-child(odd) { float: left; clear: right; }
+        .timeline-item:nth-child(even) { float: right; clear: left; margin-top: 50px; }
+
+        .timeline-item::after {
+            content: ''; position: absolute; top: 30px; width: 20px; height: 20px;
+            background: var(--neon-yellow); border-radius: 50%; box-shadow: 0 0 10px var(--neon-yellow);
+        }
+
+        .timeline-item:nth-child(odd)::after { right: -60px; }
+        .timeline-item:nth-child(even)::after { left: -60px; }
+
+        .timeline-item:hover {
+            border-color: var(--neon-yellow); background: rgba(255,242,0,0.08);
+            transform: translateY(-5px);
+        }
+
+        .time-tag { font-family: var(--font-mono); color: var(--neon-yellow); font-size: 0.8rem; font-weight: bold; }
+        .timeline-item h3 { font-family: var(--font-cyber); font-size: 1.1rem; margin: 10px 0; color: #fff; }
+
+        /* --- VIDEO SECTION --- */
+        .video-container {
+            max-width: 900px; margin: 80px auto; padding: 0 20px;
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* Tỉ lệ 16:9 chuẩn */
+            height: 0; overflow: hidden;
+            border-radius: 20px;
+            border: 1px solid var(--neon-yellow);
+            box-shadow: 0 0 30px rgba(255, 242, 0, 0.15);
+            background: #000;
+        }
+
+        .video-wrapper iframe {
+            position: absolute; top: 0; left: 0;
+            width: 100%; height: 100%; border: none;
+        }
+
+        /* --- CARDS --- */
+        .call-action {
+            max-width: 1200px; margin: 100px auto; padding: 0 20px;
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;
+        }
+
+        .action-card {
+            background: #111; padding: 40px; border-radius: 20px;
+            text-align: center; border-bottom: 4px solid transparent;
+            transition: 0.3s;
+        }
+
+        .action-card:hover { border-bottom-color: var(--neon-green); transform: scale(1.05); }
+        .action-card h4 { font-family: var(--font-cyber); color: var(--neon-green); margin-bottom: 20px; }
+
+        footer { padding: 60px; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
+
+        .timeline::after { content: ""; display: table; clear: both; }
+
+        @media (max-width: 768px) {
+            .timeline::before { left: 20px; }
+            .timeline-item { width: 90%; float: none !important; margin-left: 50px !important; }
+            .timeline-item::after { left: -40px !important; }
+            .call-action { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="particles-js"></div>
+
+    <nav>
+        <a href="index.html" class="logo">HCMC GREEN TECH</a>
+        <ul>
+            <li><a href="index.html">TRANG CHỦ</a></li>
+            <li><a href="thuc-trang.html">THỰC TRẠNG</a></li>
+            <li><a href="y-te.html">Y TẾ XANH</a></li>
+            <li><a href="hanh-dong.html" class="active">HÀNH ĐỘNG</a></li>
+            <li><a href="lien-he.html">LIÊN HỆ</a></li>
+        </ul>
+    </nav>
+
+    <section class="action-hero">
+        <div style="font-family: var(--font-mono); color: var(--neon-yellow); font-size: 0.8rem; margin-bottom: 15px;">
+            > PHASE_INITIATION // EXECUTION_MODE
+        </div>
+        <h1>LỘ TRÌNH CHIẾN LƯỢC</h1>
+        <p>Từ ý tưởng đến thực thi - Nhóm K-A-V-P cam kết hiện thực hóa mô hình Y tế xanh tại TP.HCM.</p>
+    </section>
+
+    <main>
+        <section class="timeline">
+            <div class="timeline-item">
+                <span class="time-tag">GIAI ĐOẠN 01: KHẢO SÁT</span>
+                <h3>Phân tích dữ liệu thực tế</h3>
+                <p>Khảo sát tại các bệnh viện lớn TP.HCM để đánh giá khối lượng rác thải y tế phát sinh.</p>
+            </div>
+
+            <div class="timeline-item">
+                <span class="time-tag">GIAI ĐOẠN 02: THIẾT KẾ</span>
+                <h3>Mô phỏng hệ thống Vi sóng</h3>
+                <p>Xây dựng mô hình 3D cho trạm xử lý mini tích hợp IoT giám sát khí thải thời gian thực.</p>
+            </div>
+
+            <div class="timeline-item">
+                <span class="time-tag">GIAI ĐOẠN 03: THỬ NGHIỆM</span>
+                <h3>Triển khai Node đầu tiên</h3>
+                <p>Lắp đặt trạm thử nghiệm tại cơ sở y tế quận. Số hóa quy trình theo dõi rác qua app di động.</p>
+            </div>
+
+            <div class="timeline-item">
+                <span class="time-tag">GIAI ĐOẠN 04: NHÂN RỘNG</span>
+                <h3>Kết nối mạng lưới Xanh</h3>
+                <p>Mở rộng mô hình ra toàn thành phố, tối ưu hóa lộ trình thu gom rác thông minh.</p>
+            </div>
+        </section>
+
+        <section class="video-container">
+            <h2 style="text-align: center; font-family: var(--font-cyber); color: var(--neon-yellow); margin-bottom: 30px;">
+                TRỰC QUAN QUY TRÌNH XỬ LÝ
+            </h2>
+            <div class="video-wrapper">
+                <iframe 
+                    src="https://www.youtube.com/embed/bzgFDbDXNDo" 
+                    title="Quy trình xử lý rác VWS" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+            <p style="text-align: center; font-family: var(--font-mono); font-size: 0.7rem; color: var(--neon-yellow); margin-top: 15px; opacity: 0.7;">
+                > SOURCE_VIDEO: HTV Tin Tức / Vietnam Waste Solutions
+            </p>
+        </section>
+
+        <section class="call-action">
+            <div class="action-card">
+                <h4>TUYÊN TRUYỀN</h4>
+                <p>Chiến dịch "Bệnh viện không rác nhựa" tại các cơ sở thực tập ngành Y.</p>
+            </div>
+            <div class="action-card">
+                <h4>HỢP TÁC</h4>
+                <p>Làm việc với chuyên gia để chuẩn hóa quy trình khử khuẩn sóng ngắn.</p>
+            </div>
+            <div class="action-card">
+                <h4>GIÁO DỤC</h4>
+                <p>Workshop cho học sinh về vai trò công nghệ trong y tế hiện đại.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p style="font-family: var(--font-cyber); color: var(--neon-yellow); font-size: 0.7rem;">
+            © 2026 HCMC GREEN TECH | ROADMAP BY K-A-V-P TEAM
+        </p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        particlesJS('particles-js', {
+            "particles": {
+                "number": { "value": 50, "density": { "enable": true, "value_area": 800 } },
+                "color": { "value": "#fff200" },
+                "opacity": { "value": 0.2 },
+                "size": { "value": 2 },
+                "line_linked": { "enable": true, "distance": 150, "color": "#fff200", "opacity": 0.1, "width": 1 },
+                "move": { "enable": true, "speed": 1.5 }
+            }
+        });
+    </script>
+</body>
+</html>

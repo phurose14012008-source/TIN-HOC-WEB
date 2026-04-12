@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Y TẾ XANH | HCMC GREEN TECH</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Quicksand:wght@300;500;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --neon-blue: #00f2ff;
+            --neon-green: #39ff14;
+            --dark-bg: #030a0a; /* Nền xanh đen đậm chất y tế */
+            --glass-blue: rgba(0, 242, 255, 0.05);
+            --font-cyber: 'Orbitron', sans-serif;
+            --font-mono: 'Roboto Mono', monospace;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background-color: var(--dark-bg);
+            color: #e0e0e0;
+            font-family: 'Quicksand', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+
+        /* --- NAVIGATION FIX (Tương tự các file đã hoàn hảo) --- */
+        nav {
+            position: fixed; top: 0; width: 100%;
+            padding: 20px 8%;
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(15px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 242, 255, 0.2);
+        }
+
+        .logo {
+            font-family: var(--font-cyber); font-size: 1.4rem;
+            color: var(--neon-blue); text-shadow: 0 0 10px var(--neon-blue);
+            text-decoration: none; font-weight: 900; white-space: nowrap;
+        }
+
+        nav ul { display: flex; list-style: none; gap: 25px; }
+        nav ul li a {
+            text-decoration: none; color: #fff;
+            font-family: var(--font-cyber); font-size: 0.75rem;
+            letter-spacing: 1px; transition: 0.3s; white-space: nowrap;
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            color: var(--neon-blue); text-shadow: 0 0 8px var(--neon-blue);
+        }
+
+        /* --- BACKGROUND PARTICLES --- */
+        #particles-js { position: fixed; width: 100%; height: 100%; z-index: -1; }
+
+        /* --- HERO SECTION --- */
+        .medical-hero {
+            padding: 160px 10% 80px;
+            text-align: center;
+            background: radial-gradient(circle, rgba(0,242,255,0.05) 0%, transparent 70%);
+        }
+
+        .medical-hero h1 {
+            font-family: var(--font-cyber); font-size: clamp(2.5rem, 6vw, 4rem);
+            color: var(--neon-blue); text-shadow: 0 0 20px var(--neon-blue);
+            margin-bottom: 20px;
+        }
+
+        .medical-hero p { max-width: 800px; margin: 0 auto; color: #88ced1; font-weight: 500; }
+
+        /* --- TECH GRID --- */
+        .tech-container {
+            max-width: 1200px; margin: 0 auto; padding: 40px 20px;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 50px;
+            align-items: center;
+        }
+
+        .tech-image {
+            position: relative; border-radius: 20px; overflow: hidden;
+            border: 1px solid var(--neon-blue);
+            box-shadow: 0 0 30px rgba(0, 242, 255, 0.1);
+        }
+        .tech-image img { width: 100%; display: block; filter: grayscale(0.5) contrast(1.2); }
+
+        .tech-content h2 {
+            font-family: var(--font-cyber); color: var(--neon-green);
+            margin-bottom: 25px; font-size: 1.8rem;
+        }
+
+        .feature-list { list-style: none; margin-top: 30px; }
+        .feature-item {
+            background: var(--glass-blue); border: 1px solid rgba(0, 242, 255, 0.1);
+            padding: 20px; border-radius: 12px; margin-bottom: 15px;
+            transition: 0.3s; cursor: pointer;
+        }
+        .feature-item:hover {
+            transform: translateX(10px); background: rgba(0, 242, 255, 0.1);
+            border-color: var(--neon-blue);
+        }
+        .feature-item strong { color: var(--neon-blue); font-family: var(--font-mono); display: block; margin-bottom: 5px; }
+
+        /* --- INNOVATION SECTION --- */
+        .innovation {
+            padding: 80px 10%; background: rgba(0, 242, 255, 0.02);
+            margin: 50px 0; border-top: 1px solid rgba(0, 242, 255, 0.1);
+            border-bottom: 1px solid rgba(0, 242, 255, 0.1);
+        }
+
+        .innovation-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px; margin-top: 50px;
+        }
+
+        .inno-card {
+            padding: 40px; background: #050f0f; border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.05); text-align: center;
+            transition: 0.4s;
+        }
+        .inno-card:hover { border-color: var(--neon-green); box-shadow: 0 0 20px rgba(57, 255, 20, 0.1); }
+        .inno-card i { font-size: 3rem; color: var(--neon-green); margin-bottom: 20px; display: block; }
+        .inno-card h4 { font-family: var(--font-cyber); margin-bottom: 15px; color: #fff; }
+
+        /* --- COMPARISON TABLE --- */
+        .compare-section { max-width: 1000px; margin: 80px auto; padding: 0 20px; }
+        .compare-section h2 { text-align: center; font-family: var(--font-cyber); margin-bottom: 40px; color: var(--neon-blue); }
+        
+        table { width: 100%; border-collapse: collapse; background: var(--glass-blue); border-radius: 15px; overflow: hidden; }
+        th { background: rgba(0, 242, 255, 0.2); padding: 20px; font-family: var(--font-cyber); font-size: 0.8rem; color: #fff; }
+        td { padding: 20px; border-bottom: 1px solid rgba(255,255,255,0.05); text-align: center; }
+        .check { color: var(--neon-green); font-weight: bold; }
+        .cross { color: #ff3131; font-weight: bold; }
+
+        footer { padding: 60px; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); background: #000; }
+
+        @media (max-width: 900px) {
+            .tech-container { grid-template-columns: 1fr; }
+            nav { flex-direction: column; padding: 15px; }
+            nav ul { gap: 10px; flex-wrap: wrap; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="particles-js"></div>
+
+    <nav>
+        <a href="index.html" class="logo">HCMC GREEN TECH</a>
+        <ul>
+            <li><a href="index.html">TRANG CHỦ</a></li>
+            <li><a href="thuc-trang.html">THỰC TRẠNG</a></li>
+            <li><a href="y-te.html" class="active">Y TẾ XANH</a></li>
+            <li><a href="hanh-dong.html">HÀNH ĐỘNG</a></li>
+            <li><a href="lien-he.html">LIÊN HỆ</a></li>
+        </ul>
+    </nav>
+
+    <header class="medical-hero">
+        <div style="font-family: var(--font-mono); color: var(--neon-blue); font-size: 0.8rem; margin-bottom: 15px;">
+            > MEDICAL_SYSTEM_INITIATED // BIOHAZARD_LEVEL_0
+        </div>
+        <h1>CÔNG NGHỆ Y TẾ XANH</h1>
+        <p>Ứng dụng giải pháp vi sóng và số hóa trong quản lý chất thải bệnh viện, hướng tới mục tiêu 100% không phát thải độc hại tại các cơ sở y tế TP.HCM.</p>
+    </header>
+
+    <main>
+        <section class="tech-container">
+            <div class="tech-image">
+                <img src="https://images.unsplash.com/photo-1579152276503-68fe2830c9bb?q=80&w=1000" alt="Medical Lab">
+                <div style="position: absolute; bottom: 10px; left: 10px; font-family: var(--font-mono); font-size: 0.6rem; background: rgba(0,0,0,0.7); padding: 5px;">
+                    REF_IMG: STERILIZATION_UNIT_V2
+                </div>
+            </div>
+            <div class="tech-content">
+                <h2>Giải Pháp Hóa Hơi Vi Sóng</h2>
+                <p>Khác với lò đốt truyền thống gây ô nhiễm, công nghệ vi sóng (Microwave) cho phép khử khuẩn rác thải y tế ngay tại nguồn với hiệu suất cực cao.</p>
+                
+                <ul class="feature-list">
+                    <li class="feature-item">
+                        <strong>[01] KHÔNG PHÁT THẢI DIOXIN</strong>
+                        Quy trình khép kín, không sử dụng quá trình cháy, loại bỏ hoàn toàn nguy cơ phát tán khí độc vào khu dân cư.
+                    </li>
+                    <li class="feature-item">
+                        <strong>[02] TIẾT KIỆM 40% CHI PHÍ</strong>
+                        Xử lý tại chỗ giúp cắt giảm toàn bộ chi phí vận chuyển rác nguy hại xuyên tâm thành phố.
+                    </li>
+                    <li class="feature-item">
+                        <strong>[03] TỰ ĐỘNG HÓA 100%</strong>
+                        Hệ thống vận hành thông minh, giảm thiểu tối đa sự tiếp xúc trực tiếp của nhân viên y tế với mầm bệnh.
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="innovation">
+            <h2 style="text-align: center; font-family: var(--font-cyber); color: var(--neon-green);">HỆ SINH THÁI Y TẾ SỐ</h2>
+            <div class="innovation-grid">
+                <div class="inno-card">
+                    <h4>SMART TRACKING</h4>
+                    <p>Gắn mã QR/RFID cho từng túi rác y tế để theo dõi hành trình từ giường bệnh đến trạm xử lý.</p>
+                </div>
+                <div class="inno-card">
+                    <h4>E-DATABASE</h4>
+                    <p>Số hóa toàn bộ hồ sơ quản lý rác thải bệnh viện, thay thế hệ thống sổ sách giấy truyền thống lỗi thời.</p>
+                </div>
+                <div class="inno-card">
+                    <h4>AI DIAGNOSTIC</h4>
+                    <p>Sử dụng AI để dự báo lượng rác phát sinh theo mùa dịch, giúp bệnh viện chủ động phương án xử lý.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="compare-section">
+            <h2>SO SÁNH CÔNG NGHỆ</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tiêu chí</th>
+                        <th>Lò đốt truyền thống</th>
+                        <th>Vi sóng (Green Tech)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Khí thải Dioxin</td>
+                        <td class="cross">Rất cao</td>
+                        <td class="check">Không có</td>
+                    </tr>
+                    <tr>
+                        <td>Tiếng ồn & Mùi</td>
+                        <td class="cross">Nghiêm trọng</td>
+                        <td class="check">Cực thấp</td>
+                    </tr>
+                    <tr>
+                        <td>Diện tích lắp đặt</td>
+                        <td>Rất lớn</td>
+                        <td class="check">Nhỏ gọn</td>
+                    </tr>
+                    <tr>
+                        <td>Tái sử dụng sau xử lý</td>
+                        <td class="cross">Không (Tro xỉ độc)</td>
+                        <td class="check">Có thể (Rác thông thường)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        <p style="font-family: var(--font-cyber); color: var(--neon-blue); font-size: 0.7rem;">© 2026 HCMC GREEN TECH | MEDICAL DIVISION K-A-V-P</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        particlesJS('particles-js', {
+            "particles": {
+                "number": { "value": 60, "density": { "enable": true, "value_area": 800 } },
+                "color": { "value": "#00f2ff" },
+                "opacity": { "value": 0.2 },
+                "size": { "value": 2 },
+                "line_linked": { "enable": true, "distance": 150, "color": "#00f2ff", "opacity": 0.1, "width": 1 },
+                "move": { "enable": true, "speed": 1 }
+            }
+        });
+    </script>
+</body>
+</html>
