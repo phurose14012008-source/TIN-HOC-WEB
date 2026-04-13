@@ -1,457 +1,366 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>THỰC TRẠNG | HCMC GREEN TECH</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Quicksand:wght@300;500;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THỰC TRẠNG | HCMC GREEN TECH</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Quicksand:wght@300;500;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-    <style>
-        /* VERBOSE CSS CORE 
-           Declared line-by-line to ensure stability and increase file volume.
-        */
-        :root {
-            --neon-green: #39ff14;
-            --dark-bg: #020505;
-            --glass: rgba(255, 255, 255, 0.03);
-            --font-cyber: 'Orbitron', sans-serif;
-            --font-mono: 'Roboto Mono', monospace;
-            --error-red: #ff3131;
-            --warning-orange: #ff8c00;
-            --info-blue: #00f2ff;
-        }
+    <style>
+        :root {
+            --neon-green: #39ff14;
+            --dark-bg: #020505;
+            --glass: rgba(255, 255, 255, 0.03);
+            --font-cyber: 'Orbitron', sans-serif;
+            --font-mono: 'Roboto Mono', monospace;
+            --error-red: #ff3131;
+            --warning-orange: #ff8c00;
+            --info-blue: #00f2ff;
+            --transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
 
-        * { 
-            margin: 0; 
-            padding: 0; 
-            box-sizing: border-box; 
-            scroll-behavior: smooth; 
-        }
-        
-        body {
-            background-color: var(--dark-bg);
-            color: #ffffff;
-            font-family: 'Quicksand', sans-serif;
-            overflow-x: hidden;
-            line-height: 1.8;
-        }
+        * { 
+            margin: 0; padding: 0; box-sizing: border-box; 
+            scroll-behavior: smooth; 
+        }
+        
+        body {
+            background-color: var(--dark-bg);
+            color: #ffffff;
+            font-family: 'Quicksand', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.8;
+        }
 
-        /* --- NAVIGATION INTERFACE --- */
-        nav {
-            position: fixed; 
-            top: 0; 
-            width: 100%;
-            padding: 20px 8%;
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center;
-            background: rgba(0, 0, 0, 0.98);
-            backdrop-filter: blur(20px);
-            z-index: 1000;
-            border-bottom: 1px solid rgba(57, 255, 20, 0.3);
-        }
+        /* --- NAVIGATION --- */
+        nav {
+            position: fixed; top: 0; width: 100%;
+            padding: 20px 8%;
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(15px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(57, 255, 20, 0.2);
+        }
 
-        .logo {
-            font-family: var(--font-cyber); 
-            font-size: 1.5rem;
-            color: var(--neon-green); 
-            text-shadow: 0 0 15px var(--neon-green);
-            text-decoration: none; 
-            font-weight: 900;
-        }
+        .logo {
+            font-family: var(--font-cyber); font-size: 1.5rem;
+            color: var(--neon-green); text-shadow: 0 0 10px var(--neon-green);
+            text-decoration: none; font-weight: 900;
+        }
 
-        nav ul { 
-            display: flex; 
-            list-style: none; 
-            gap: 30px; 
-        }
+        nav ul { display: flex; list-style: none; gap: 30px; }
 
-        nav ul li a {
-            text-decoration: none; 
-            color: #fff;
-            font-family: var(--font-cyber); 
-            font-size: 0.8rem;
-            letter-spacing: 1px; 
-            transition: 0.3s;
-        }
+        nav ul li a {
+            text-decoration: none; color: #fff;
+            font-family: var(--font-cyber); font-size: 0.75rem;
+            letter-spacing: 1px; transition: var(--transition);
+        }
 
-        nav ul li a:hover, 
-        nav ul li a.active {
-            color: var(--neon-green); 
-            text-shadow: 0 0 10px var(--neon-green);
-        }
+        nav ul li a:hover, nav ul li a.active {
+            color: var(--neon-green); text-shadow: 0 0 8px var(--neon-green);
+        }
 
-        /* --- BACKGROUND ANIMATION --- */
-        #particles-js { 
-            position: fixed; 
-            width: 100%; 
-            height: 100%; 
-            z-index: -1; 
-        }
+        #particles-js { position: fixed; width: 100%; height: 100%; z-index: -1; }
 
-        /* --- HERO ANALYTICS --- */
-        .hero-detailed {
-            padding: 200px 10% 100px;
-            text-align: center;
-            background: radial-gradient(circle at center, rgba(255,49,49,0.1) 0%, transparent 70%);
-        }
+        /* --- HERO ANALYTICS --- */
+        .hero-detailed {
+            padding: 180px 10% 80px;
+            text-align: center;
+            background: radial-gradient(circle at center, rgba(57, 255, 20, 0.05) 0%, transparent 70%);
+        }
 
-        .badge {
-            display: inline-block; 
-            padding: 5px 15px; 
-            background: var(--error-red);
-            font-family: var(--font-mono); 
-            font-size: 0.7rem; 
-            border-radius: 4px;
-            margin-bottom: 20px; 
-            animation: blink 1s infinite;
-        }
+        .badge {
+            display: inline-block; padding: 4px 12px;
+            background: var(--error-red); font-family: var(--font-mono);
+            font-size: 0.7rem; border-radius: 2px;
+            margin-bottom: 20px; animation: blink 1.5s infinite;
+        }
 
-        @keyframes blink { 50% { opacity: 0.5; } }
+        @keyframes blink { 50% { opacity: 0.4; } }
 
-        .hero-detailed h1 {
-            font-family: var(--font-cyber); 
-            font-size: clamp(2.5rem, 7vw, 4.5rem);
-            color: #fff; 
-            margin-bottom: 30px; 
-            text-transform: uppercase;
-        }
+        .hero-detailed h1 {
+            font-family: var(--font-cyber); font-size: clamp(2rem, 6vw, 4rem);
+            color: #fff; margin-bottom: 25px; text-transform: uppercase;
+        }
 
-        /* --- ANALYTICS CARDS GRID --- */
-        .analytics-grid {
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px; 
-            margin: -50px 10% 80px;
-        }
+        /* --- ANALYTICS CARDS --- */
+        .analytics-grid {
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px; margin: 0 10% 80px;
+        }
 
-        .ana-card {
-            background: #0a0a0a; 
-            border: 1px solid rgba(255,255,255,0.1);
-            padding: 30px; 
-            border-radius: 10px; 
-            position: relative;
-            transition: 0.4s;
-        }
+        .ana-card {
+            background: rgba(255,255,255,0.02); 
+            border: 1px solid rgba(255,255,255,0.05);
+            padding: 30px; border-radius: 8px;
+            position: relative; transition: var(--transition);
+        }
 
-        .ana-card::before {
-            content: ''; 
-            position: absolute; 
-            top: 0; 
-            left: 0; 
-            width: 4px; 
-            height: 100%;
-            background: var(--neon-green);
-        }
+        .ana-card:hover {
+            border-color: var(--neon-green);
+            transform: translateY(-5px);
+            background: rgba(57, 255, 20, 0.03);
+        }
 
-        .ana-card h3 { 
-            font-family: var(--font-mono); 
-            font-size: 0.8rem; 
-            color: #888; 
-            text-transform: uppercase;
-        }
+        .ana-card::before {
+            content: ''; position: absolute; top: 0; left: 0;
+            width: 3px; height: 0; background: var(--neon-green);
+            transition: var(--transition);
+        }
 
-        .ana-card .value { 
-            font-family: var(--font-cyber); 
-            font-size: 2.2rem; 
-            color: #fff; 
-            margin: 10px 0; 
-        }
+        .ana-card:hover::before { height: 100%; }
 
-        /* --- CONTENT MODULES --- */
-        .section-padding { padding: 80px 10%; }
-        
-        .content-grid { 
-            display: grid; 
-            grid-template-columns: 1fr 1fr; 
-            gap: 60px; 
-            align-items: center;
-            margin-bottom: 120px;
-        }
+        .ana-card h3 { 
+            font-family: var(--font-mono); font-size: 0.75rem; 
+            color: #888; text-transform: uppercase; 
+        }
 
-        .image-container {
-            border: 1px solid rgba(57, 255, 20, 0.3);
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 0 30px rgba(0,0,0,0.6);
-            position: relative;
-        }
+        .ana-card .value { 
+            font-family: var(--font-cyber); font-size: 2.2rem; 
+            color: #fff; margin: 10px 0; 
+        }
 
-        .image-container img { 
-            width: 100%; 
-            display: block; 
-            filter: grayscale(20%) contrast(1.1); 
-            transition: 0.6s ease;
-        }
-        
-        .image-container:hover img { 
-            filter: grayscale(0%); 
-            transform: scale(1.03); 
-        }
+        /* --- CONTENT MODULES --- */
+        .section-padding { padding: 80px 10%; }
+        
+        .content-grid { 
+            display: grid; grid-template-columns: 1fr 1fr; 
+            gap: 60px; align-items: center; margin-bottom: 100px;
+        }
 
-        .image-credit {
-            position: absolute; 
-            bottom: 0; 
-            right: 0;
-            background: rgba(0,0,0,0.85); 
-            color: var(--neon-green);
-            font-family: var(--font-mono); 
-            font-size: 0.6rem;
-            padding: 6px 15px; 
-            border-top-left-radius: 12px;
-            border: 1px solid rgba(57, 255, 20, 0.2);
-        }
+        .image-container {
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px; overflow: hidden;
+            position: relative;
+        }
 
-        .report-box { 
-            background: var(--glass); 
-            padding: 45px; 
-            border-radius: 25px; 
-            border: 1px solid rgba(255,255,255,0.05); 
-            backdrop-filter: blur(10px);
-        }
+        .image-container img { 
+            width: 100%; display: block; 
+            filter: grayscale(40%); transition: 0.8s;
+        }
+        
+        .image-container:hover img { filter: grayscale(0%); transform: scale(1.05); }
 
-        .report-box h2 { 
-            font-family: var(--font-cyber); 
-            color: var(--neon-green); 
-            margin-bottom: 25px; 
-            font-size: 1.6rem; 
-            text-transform: uppercase;
-        }
+        .image-credit {
+            position: absolute; bottom: 0; right: 0;
+            background: rgba(0,0,0,0.8); color: var(--neon-green);
+            font-family: var(--font-mono); font-size: 0.6rem;
+            padding: 5px 12px; border-top-left-radius: 8px;
+        }
 
-        /* --- DATA TABLE: 9 COLUMNS --- */
-        .table-section { 
-            padding: 100px 5%; 
-            background: #050505; 
-            border-top: 1px solid #111;
-        }
+        .report-box { 
+            background: var(--glass); padding: 40px; 
+            border-radius: 15px; border: 1px solid rgba(255,255,255,0.05); 
+        }
 
-        .table-section h2 { 
-            font-family: var(--font-cyber); 
-            text-align: center; 
-            margin-bottom: 60px; 
-            color: var(--neon-green); 
-            letter-spacing: 5px;
-        }
+        .report-box h2 { 
+            font-family: var(--font-cyber); color: var(--neon-green); 
+            margin-bottom: 20px; font-size: 1.4rem; 
+        }
 
-        .table-wrapper { 
-            overflow-x: auto; 
-            border-radius: 15px; 
-            border: 1px solid #222; 
-        }
+        /* --- DATA TABLE --- */
+        .table-section { padding: 80px 5%; background: #030303; }
 
-        .custom-table { 
-            width: 100%; 
-            border-collapse: collapse; 
-            min-width: 1200px; 
-        }
+        .table-section h2 { 
+            font-family: var(--font-cyber); text-align: center; 
+            margin-bottom: 50px; color: var(--neon-green); letter-spacing: 3px;
+        }
 
-        .custom-table th { 
-            font-family: var(--font-cyber); 
-            font-size: 0.65rem; 
-            color: var(--neon-green); 
-            padding: 25px 15px; 
-            text-align: left; 
-            background: #000; 
-            border-bottom: 2px solid var(--neon-green); 
-            text-transform: uppercase;
-        }
+        .table-wrapper { overflow-x: auto; border: 1px solid #1a1a1a; border-radius: 8px; }
 
-        .custom-table td { 
-            padding: 20px 15px; 
-            font-size: 0.85rem; 
-            border-bottom: 1px solid rgba(255,255,255,0.03); 
-            background: #080808; 
-            color: #bbb;
-        }
+        .custom-table { width: 100%; border-collapse: collapse; min-width: 1000px; }
 
-        .custom-table tr:hover td { 
-            background: #111; 
-            color: #fff; 
-        }
+        .custom-table th { 
+            font-family: var(--font-cyber); font-size: 0.65rem; 
+            color: var(--neon-green); padding: 20px; 
+            text-align: left; background: #000; 
+            border-bottom: 2px solid var(--neon-green); 
+        }
 
-        /* --- FOOTER --- */
-        footer { 
-            background: #000; 
-            padding: 120px 10% 50px; 
-            text-align: center; 
-            border-top: 1px solid #111; 
-        }
+        .custom-table td { 
+            padding: 15px 20px; font-size: 0.85rem; 
+            border-bottom: 1px solid #111; background: #080808; color: #bbb;
+        }
 
-        @media (max-width: 1100px) {
-            .content-grid { grid-template-columns: 1fr; }
-            .analytics-grid { grid-template-columns: 1fr 1fr; }
-        }
-    </style>
+        .custom-table tr:hover td { background: #111; color: #fff; }
+
+        /* --- FOOTER --- */
+        footer { 
+            background: #000; padding: 100px 10% 40px; 
+            border-top: 1px solid #111; 
+        }
+
+        .footer-grid {
+            display: grid; grid-template-columns: 2fr 1fr; gap: 40px;
+            text-align: left;
+        }
+
+        @media (max-width: 968px) {
+            .content-grid, .footer-grid { grid-template-columns: 1fr; }
+            .analytics-grid { grid-template-columns: 1fr 1fr; }
+            nav ul { display: none; } /* Cần bổ sung mobile menu sau */
+        }
+    </style>
 </head>
 <body>
 
-    <div id="particles-js"></div>
+    <div id="particles-js"></div>
 
-    <nav>
-        <a href="index.html" class="logo">HCMC GREEN TECH</a>
-        <ul>
-            <li><a href="index.html">TRANG CHỦ</a></li>
-            <li><a href="thuc-trang.html" class="active">THỰC TRẠNG</a></li>
-            <li><a href="y-te.html">Y TẾ XANH</a></li>
-            <li><a href="hanh-dong.html">HÀNH ĐỘNG</a></li>
-            <li><a href="lien-he.html">LIÊN HỆ</a></li>
-        </ul>
-    </nav>
+    <nav>
+        <a href="index.html" class="logo">HCMC GREEN TECH</a>
+        <ul>
+            <li><a href="index.html">TRANG CHỦ</a></li>
+            <li><a href="thuc-trang.html" class="active">THỰC TRẠNG</a></li>
+            <li><a href="y-te.html">Y TẾ XANH</a></li>
+            <li><a href="hanh-dong.html">HÀNH ĐỘNG</a></li>
+            <li><a href="lien-he.html">LIÊN HỆ</a></li>
+        </ul>
+    </nav>
 
-    <header class="hero-detailed">
-        <span class="badge">CRITICAL ALERT: URBAN_SYSTEM_STRESS</span>
-        <h1>PHÂN TÍCH THỰC TRẠNG <br> HỆ SINH THÁI ĐÔ THỊ 2026</h1>
-        <p style="max-width: 850px; margin: 0 auto; color: #aaa; font-size: 1.15rem;">
-            Dữ liệu tổng hợp về khủng hoảng rác thải, ô nhiễm nguồn nước và chất lượng không khí tại TP. Hồ Chí Minh. Các chỉ số đều nằm trong ngưỡng rủi ro sinh học cao.
-        </p>
-    </header>
+    <header class="hero-detailed">
+        <span class="badge">SYSTEM STATUS: CRITICAL_WARNING</span>
+        <h1>PHÂN TÍCH THỰC TRẠNG <br> HỆ SINH THÁI ĐÔ THỊ 2026</h1>
+        <p style="max-width: 800px; margin: 0 auto; color: #888;">
+            Dữ liệu tổng hợp về khủng hoảng rác thải, ô nhiễm nguồn nước và chất lượng không khí tại TP. Hồ Chí Minh. 
+            Các chỉ số được cập nhật theo thời gian thực từ mạng lưới cảm biến KAVP.
+        </p>
+    </header>
 
-    <section class="analytics-grid">
-        <div class="ana-card">
-            <h3>RÁC PHÁT THẢI / NGÀY</h3>
-            <div class="value">9,500T</div>
-            <p style="font-size: 0.7rem; color: var(--error-red);">↑ 4.2% Growth Rate</p>
-        </div>
-        <div class="ana-card">
-            <h3>TỶ LỆ CHÔN LẤP</h3>
-            <div class="value">69%</div>
-            <p style="font-size: 0.7rem; color: var(--warning-orange);">Unprocessed Waste</p>
-        </div>
-        <div class="ana-card">
-            <h3>RÁC Y TẾ NGUY HẠI</h3>
-            <div class="value">42T</div>
-            <p style="font-size: 0.7rem; color: var(--info-blue);">Critical Handling</p>
-        </div>
-        <div class="ana-card">
-            <h3>BỤI MỊN PM2.5</h3>
-            <div class="value">152</div>
-            <p style="font-size: 0.7rem; color: var(--error-red);">Unhealthy Level</p>
-        </div>
-    </section>
+    <section class="analytics-grid">
+        <div class="ana-card">
+            <h3>RÁC PHÁT THẢI / NGÀY</h3>
+            <div class="value">9,500T</div>
+            <p style="font-size: 0.7rem; color: var(--error-red);">↑ 4.2% Tốc độ tăng trưởng</p>
+        </div>
+        <div class="ana-card">
+            <h3>TỶ LỆ CHÔN LẤP</h3>
+            <div class="value">69%</div>
+            <p style="font-size: 0.7rem; color: var(--warning-orange);">Chưa qua xử lý</p>
+        </div>
+        <div class="ana-card">
+            <h3>RÁC Y TẾ NGUY HẠI</h3>
+            <div class="value">42T</div>
+            <p style="font-size: 0.7rem; color: var(--info-blue);">Cần xử lý khẩn cấp</p>
+        </div>
+        <div class="ana-card">
+            <h3>BỤI MỊN PM2.5</h3>
+            <div class="value">152</div>
+            <p style="font-size: 0.7rem; color: var(--error-red);">Ngưỡng không an toàn</p>
+        </div>
+    </section>
 
-    <main>
-        <section class="section-padding">
-            <div class="content-grid">
-                <div class="report-box">
-                    <h2>1. KHỦNG HOẢNG HẠ TẦNG CHÔN LẤP</h2>
-                    <p>Hiện nay, TP.HCM vẫn đang phụ thuộc nặng nề vào Khu liên hợp xử lý rác Đa Phước. Tuy nhiên, việc chôn lấp lộ thiên đã đạt đến ngưỡng bão hòa, gây ra mùi hôi lan rộng trong bán kính 10km quanh khu vực phía Nam thành phố.</p>
-                    <p>Hệ thống lót đáy tại các bãi cũ đang có dấu hiệu xuống cấp, đe dọa trực tiếp đến tầng nước ngầm cung cấp cho hàng triệu hộ dân.</p>
-                    <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--neon-green); margin-top: 20px;">
-                        > Đa Phước: Tiếp nhận ~6,500 tấn/ngày <br>
-                        > Phước Hiệp: Dự phòng khẩn cấp <br>
-                        > Phát thải Methane: 28,000 m3/h
-                    </div>
-                </div>
-                <div class="image-container">
-                    <img src="https://images.unsplash.com/photo-1530587191325-3db32d826c18?auto=format&fit=crop&q=80&w=1200" alt="Bãi rác khổng lồ tại TP.HCM">
-                    <div class="image-credit">NGUỒN: UNSPLASH / URBAN_POLLUTION_ARCHIVE</div>
-                </div>
-            </div>
-        </section>
+    <main>
+        <section class="section-padding">
+            <div class="content-grid">
+                <div class="report-box">
+                    <h2>01. KHỦNG HOẢNG CHÔN LẤP</h2>
+                    <p>Hệ thống xử lý rác tại Đa Phước đang đối mặt với tình trạng quá tải nghiêm trọng. Việc chôn lấp lộ thiên không chỉ gây ô nhiễm mùi mà còn tạo ra rủi ro rò rỉ nước rỉ rác (leachate) vào mạch nước ngầm.</p>
+                    <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--neon-green); margin-top: 20px; line-height: 2;">
+                        > Đa Phước: ~6,500 tấn/ngày <br>
+                        > Khí Methane: 28,000 m³/h <br>
+                        > Bán kính ảnh hưởng: 10km
+                    </div>
+                </div>
+                <div class="image-container">
+                    <img src="https://images.unsplash.com/photo-1530587191325-3db32d826c18?auto=format&fit=crop&q=80&w=1200" alt="Landfill">
+                    <div class="image-credit">REF: URBAN_POLLUTION_2026</div>
+                </div>
+            </div>
+        </section>
 
-        <section class="section-padding" style="background: rgba(57, 255, 20, 0.02);">
-            <div class="content-grid">
-                <div class="image-container" style="order: 2;">
-                    <img src="https://images.unsplash.com/photo-1611284446314-60a58ac0deb9?auto=format&fit=crop&q=80&w=1200" alt="Ô nhiễm rác nhựa kênh rạch">
-                    <div class="image-credit">NGUỒN: REUTERS / VIETNAM_ENVIRONMENT_REPORT</div>
-                </div>
-                <div class="report-box" style="order: 1;">
-                    <h2>2. "MA TRẬN" RÁC THẢI KÊNH RẠCH</h2>
-                    <p>Với hơn 2.000km kênh rạch chằng chịt, rác thải nhựa không được thu gom đúng cách đang trở thành thảm họa sinh thái. Ước tính mỗi ngày có hơn 80-100 tấn rác nhựa trôi thẳng ra sông Sài Gòn.</p>
-                    <p>Hạt vi nhựa (Microplastics) đã được tìm thấy trong hầu hết các mẫu nước bề mặt, gây ảnh hưởng nghiêm trọng đến chuỗi thức ăn thủy sản và sức khỏe con người.</p>
-                    <ul style="list-style: none; font-family: var(--font-mono); font-size: 0.8rem; color: var(--neon-green); margin-top: 15px;">
-                        <li>> Tốc độ phân hủy: 450+ năm</li>
-                        <li>> Tỷ lệ trôi sông: 12.5%</li>
-                        <li>> Khả năng nạo vét: 35%</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
+        <section class="section-padding" style="background: rgba(57, 255, 20, 0.01);">
+            <div class="content-grid">
+                <div class="image-container" style="order: 2;">
+                    <img src="https://images.unsplash.com/photo-1611284446314-60a58ac0deb9?auto=format&fit=crop&q=80&w=1200" alt="Canal Pollution">
+                    <div class="image-credit">REF: CANAL_WASTE_REPORT</div>
+                </div>
+                <div class="report-box" style="order: 1;">
+                    <h2>02. Ô NHIỄM KÊNH RẠCH</h2>
+                    <p>Hệ thống kênh rạch TP.HCM đang gánh chịu hơn 80 tấn rác nhựa mỗi ngày. Sự xuất hiện của hạt vi nhựa trong chuỗi thực phẩm thủy sản đang đặt ra những thách thức lớn về sức khỏe cộng đồng.</p>
+                    <ul style="list-style: none; font-family: var(--font-mono); font-size: 0.75rem; color: var(--neon-green); margin-top: 15px;">
+                        <li>> Tỷ lệ rác nhựa: 12.5%</li>
+                        <li>> Khả năng tự làm sạch: < 5%</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
 
-        <section class="section-padding">
-            <div class="content-grid">
-                <div class="report-box">
-                    <h2>3. HIỂM HỌA RÁC THẢI Y TẾ</h2>
-                    <p>Rác thải lây nhiễm (kim tiêm, túi dịch, găng tay) nếu xử lý bằng lò đốt cũ sẽ sinh ra Dioxin và Furan cực độc. Việc chôn lấp rác y tế chưa qua tiệt trùng vi sóng tạo điều kiện cho các siêu vi khuẩn kháng thuốc (Superbugs) phát triển.</p>
-                    <p>Nhóm K-A-V-P xác định đây là "điểm đen" cần ưu tiên số hóa và xử lý bằng công nghệ xanh không khói.</p>
-                </div>
-                <div class="image-container">
-                    <img src="https://images.unsplash.com/photo-1584036561566-baf8f5f1b144?auto=format&fit=crop&q=80&w=1200" alt="Rủi ro rác thải y tế">
-                    <div class="image-credit">NGUỒN: WHO / MEDICAL_BIOHAZARD_DATABASE</div>
-                </div>
-            </div>
-        </section>
+        <section class="section-padding">
+            <div class="content-grid">
+                <div class="report-box">
+                    <h2>03. RỦI RO RÁC Y TẾ</h2>
+                    <p>Việc xử lý rác thải lây nhiễm bằng lò đốt lạc hậu tạo ra Dioxin. Nhóm K-A-V-P đề xuất chuyển đổi sang công nghệ tiệt trùng vi sóng - giải pháp "xanh" loại bỏ hoàn toàn khí thải độc hại và siêu vi khuẩn kháng thuốc.</p>
+                </div>
+                <div class="image-container">
+                    <img src="https://images.unsplash.com/photo-1584036561566-baf8f5f1b144?auto=format&fit=crop&q=80&w=1200" alt="Medical Waste">
+                    <div class="image-credit">REF: BIOHAZARD_DATABASE</div>
+                </div>
+            </div>
+        </section>
 
-        <section class="table-section">
-            <h2>CHỈ SỐ CHI TIẾT THEO CỤM ĐÔ THỊ</h2>
-            <div class="table-wrapper">
-                <table class="custom-table">
-                    <thead>
-                        <tr>
-                            <th>ID_ZONE</th>
-                            <th>ĐỊA BÀN</th>
-                            <th>DIỆN TÍCH (km²)</th>
-                            <th>DÂN SỐ (Tr)</th>
-                            <th>RÁC (T/Ngày)</th>
-                            <th>TỶ LỆ CHÔN (%)</th>
-                            <th>AQI TB</th>
-                            <th>TRẠM NODES</th>
-                            <th>RỦI RO</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>#HCM-01</td><td>Cụm Trung Tâm (Q1, 3, 5)</td><td>22,5</td><td>2,1</td><td>1850</td><td>45%</td><td>142</td><td>14</td><td style="color: var(--warning-orange);">High</td></tr>
-                        <tr><td>#HCM-02</td><td>Cụm Nam (Q7, Nhà Bè)</td><td>178,0</td><td>1,8</td><td>3400</td><td>85%</td><td>185</td><td>08</td><td style="color: var(--error-red);">CRITICAL</td></tr>
-                        <tr><td>#HCM-03</td><td>TP. Thủ Đức (Cụm Đông)</td><td>211,5</td><td>1,2</td><td>2200</td><td>60%</td><td>135</td><td>11</td><td style="color: var(--info-blue);">Medium</td></tr>
-                        <tr><td>#HCM-04</td><td>Tân Bình, Gò Vấp</td><td>58,2</td><td>2,5</td><td>2650</td><td>55%</td><td>158</td><td>09</td><td style="color: var(--warning-orange);">High</td></tr>
-                        <tr><td>#HCM-05</td><td>Bình Tân, Bình Chánh</td><td>275,4</td><td>2,9</td><td>2900</td><td>75%</td><td>172</td><td>06</td><td style="color: var(--error-red);">CRITICAL</td></tr>
-                        <tr><td>#HCM-06</td><td>Hóc Môn, Củ Chi</td><td>544,1</td><td>1,1</td><td>1100</td><td>40%</td><td>98</td><td>04</td><td style="color: var(--neon-green);">Low</td></tr>
-                        <tr><td>#HCM-07</td><td>Quận 4, 8, 10</td><td>32,8</td><td>1,4</td><td>1450</td><td>50%</td><td>160</td><td>07</td><td style="color: var(--warning-orange);">High</td></tr>
-                        <tr><td>#HCM-08</td><td>Quận 11, 12</td><td>61,3</td><td>1,9</td><td>1900</td><td>65%</td><td>155</td><td>05</td><td style="color: var(--info-blue);">Medium</td></tr>
-                    </tbody>
-                </table>
-            </div>
-            <p style="text-align: center; margin-top: 30px; font-family: var(--font-mono); font-size: 0.7rem; color: #444;">
-                > DỮ LIỆU ĐƯỢC ĐỒNG BỘ TỪ HỆ THỐNG QUAN TRẮC ĐỘC LẬP KAVP-2026
-            </p>
-        </section>
-    </main>
+        <section class="table-section">
+            <h2>DỮ LIỆU CỤM ĐÔ THỊ</h2>
+            <div class="table-wrapper">
+                <table class="custom-table">
+                    <thead>
+                        <tr>
+                            <th>ID_ZONE</th>
+                            <th>ĐỊA BÀN</th>
+                            <th>DÂN SỐ (Tr)</th>
+                            <th>RÁC (T/Ngày)</th>
+                            <th>AQI</th>
+                            <th>RỦI RO</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>#HCM-01</td><td>Cụm Trung Tâm</td><td>2.1</td><td>1850</td><td>142</td><td style="color: var(--warning-orange);">High</td></tr>
+                        <tr><td>#HCM-02</td><td>Cụm Nam</td><td>1.8</td><td>3400</td><td>185</td><td style="color: var(--error-red);">CRITICAL</td></tr>
+                        <tr><td>#HCM-03</td><td>TP. Thủ Đức</td><td>1.2</td><td>2200</td><td>135</td><td style="color: var(--info-blue);">Medium</td></tr>
+                        <tr><td>#HCM-05</td><td>Bình Tân, Bình Chánh</td><td>2.9</td><td>2900</td><td>172</td><td style="color: var(--error-red);">CRITICAL</td></tr>
+                        <tr><td>#HCM-06</td><td>Hóc Môn, Củ Chi</td><td>1.1</td><td>1100</td><td>98</td><td style="color: var(--neon-green);">Low</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
 
-    <footer>
-        <div style="display: flex; justify-content: space-between; align-items: flex-start; text-align: left; flex-wrap: wrap; gap: 40px;">
-            <div style="flex: 2;">
-                <h3 style="font-family: var(--font-cyber); color: var(--neon-green); margin-bottom: 20px;">HCMC GREEN TECH</h3>
-                <p style="opacity: 0.6; font-size: 0.9rem;">Dự án được phát triển bởi nhóm K-A-V-P (Lớp 12 - THPT Nguyễn Thượng Hiền). Mục tiêu số hóa dữ liệu môi trường và đề xuất giải pháp xử lý rác y tế bằng công nghệ Vi sóng tiệt trùng không phát thải.</p>
-            </div>
-            <div style="flex: 1;">
-                <h4 style="font-family: var(--font-cyber); margin-bottom: 20px;">DỮ LIỆU THAM KHẢO</h4>
-                <ul style="list-style: none; opacity: 0.6; font-size: 0.8rem;">
-                    <li>- Báo cáo hiện trạng môi trường HCMC 2025</li>
-                    <li>- Tổng cục Môi trường Việt Nam</li>
-                    <li>- WHO Air Quality Guideline</li>
-                    <li>- Vietnam Waste Solutions (VWS) Archives</li>
-                </ul>
-            </div>
-        </div>
-        <div style="margin-top: 60px; border-top: 1px solid #111; padding-top: 20px; font-family: var(--font-mono); font-size: 0.6rem; color: #444;">
-            URBAN_ANALYSIS_ENGINE_V5.0 // ENCRYPTION: AES-256 // PROJECT_KAVP_2026
-        </div>
-    </footer>
+    <footer>
+        <div class="footer-grid">
+            <div>
+                <h3 style="font-family: var(--font-cyber); color: var(--neon-green); margin-bottom: 15px;">HCMC GREEN TECH</h3>
+                <p style="opacity: 0.5; font-size: 0.85rem; max-width: 500px;">
+                    Dự án nghiên cứu bởi nhóm K-A-V-P (Nguyễn Thượng Hiền). 
+                    Tập trung vào giải pháp số hóa và công nghệ y tế xanh bền vững.
+                </p>
+            </div>
+            <div>
+                <h4 style="font-family: var(--font-cyber); font-size: 0.8rem; margin-bottom: 15px;">DỮ LIỆU NGUỒN</h4>
+                <ul style="list-style: none; opacity: 0.5; font-size: 0.75rem; line-height: 2;">
+                    <li>- Báo cáo Môi trường 2025</li>
+                    <li>- WHO Air Quality guidelines</li>
+                </ul>
+            </div>
+        </div>
+        <div style="margin-top: 50px; border-top: 1px solid #111; padding-top: 20px; font-family: var(--font-mono); font-size: 0.6rem; color: #444; text-align: center;">
+            CORE_V5.0 // PROJECT_KAVP_2026 // NO_EMISSION_INITIATIVE
+        </div>
+    </footer>
 
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script>
-        particlesJS('particles-js', {
-            "particles": {
-                "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
-                "color": { "value": "#39ff14" },
-                "opacity": { "value": 0.15 },
-                "size": { "value": 2 },
-                "line_linked": { "enable": true, "distance": 150, "color": "#39ff14", "opacity": 0.05, "width": 1 },
-                "move": { "enable": true, "speed": 1 }
-            }
-        });
-        console.log("%c [DATA_CORE] THUC_TRANG_ANALYSIS: LOADED ", "color: #39ff14; font-weight: bold; background: #000; padding: 10px;");
-    </script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        particlesJS('particles-js', {
+            "particles": {
+                "number": { "value": 60, "density": { "enable": true, "value_area": 800 } },
+                "color": { "value": "#39ff14" },
+                "opacity": { "value": 0.1 },
+                "size": { "value": 2 },
+                "line_linked": { "enable": true, "distance": 150, "color": "#39ff14", "opacity": 0.05, "width": 1 },
+                "move": { "enable": true, "speed": 0.8 }
+            }
+        });
+    </script>
 </body>
 </html>
