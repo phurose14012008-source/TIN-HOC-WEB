@@ -8,11 +8,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Quicksand:wght@300;500;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
 
     <style>
-        /* CSS CORE - Đã chuyển sang tone Đỏ */
         :root {
-            --neon-red: #ff3131; /* Đổi từ neon-green sang neon-red */
+            --neon-green: #39ff14;
+            --neon-red: #ff3131; /* Thêm biến màu đỏ cho tiêu đề */
             --dark-bg: #020505;
-            --glass: rgba(255, 0, 0, 0.03); /* Chuyển glass sang ánh đỏ */
+            --glass: rgba(255, 255, 255, 0.03);
             --font-cyber: 'Orbitron', sans-serif;
             --font-mono: 'Roboto Mono', monospace;
             --error-red: #ff3131;
@@ -29,13 +29,13 @@
         
         body {
             background-color: var(--dark-bg);
-            color: #ff4d4d; /* Đổi màu chữ chính sang đỏ nhạt để dễ đọc */
+            color: #ffffff; /* Nội dung vẫn để màu trắng */
             font-family: 'Quicksand', sans-serif;
             overflow-x: hidden;
             line-height: 1.8;
         }
 
-        /* --- NAVIGATION INTERFACE --- */
+        /* --- NAVIGATION --- */
         nav {
             position: fixed; 
             top: 0; 
@@ -47,27 +47,22 @@
             background: rgba(0, 0, 0, 0.98);
             backdrop-filter: blur(20px);
             z-index: 1000;
-            border-bottom: 1px solid rgba(255, 49, 49, 0.3); /* Border đỏ */
+            border-bottom: 1px solid rgba(57, 255, 20, 0.3);
         }
 
         .logo {
             font-family: var(--font-cyber); 
             font-size: 1.5rem;
-            color: var(--neon-red); 
+            color: var(--neon-red); /* Logo màu Đỏ */
             text-shadow: 0 0 15px var(--neon-red);
             text-decoration: none; 
             font-weight: 900;
         }
 
-        nav ul { 
-            display: flex; 
-            list-style: none; 
-            gap: 30px; 
-        }
-
+        nav ul { display: flex; list-style: none; gap: 30px; }
         nav ul li a {
             text-decoration: none; 
-            color: #ffcccc; /* Chữ menu màu đỏ trắng */
+            color: #fff;
             font-family: var(--font-cyber); 
             font-size: 0.8rem;
             letter-spacing: 1px; 
@@ -76,23 +71,17 @@
 
         nav ul li a:hover, 
         nav ul li a.active {
-            color: var(--neon-red); 
+            color: var(--neon-red); /* Menu hover sang Đỏ cho đồng bộ */
             text-shadow: 0 0 10px var(--neon-red);
         }
 
-        /* --- BACKGROUND ANIMATION --- */
-        #particles-js { 
-            position: fixed; 
-            width: 100%; 
-            height: 100%; 
-            z-index: -1; 
-        }
+        #particles-js { position: fixed; width: 100%; height: 100%; z-index: -1; }
 
-        /* --- HERO ANALYTICS --- */
+        /* --- HERO --- */
         .hero-detailed {
             padding: 200px 10% 100px;
             text-align: center;
-            background: radial-gradient(circle at center, rgba(255,49,49,0.15) 0%, transparent 70%);
+            background: radial-gradient(circle at center, rgba(255,49,49,0.1) 0%, transparent 70%);
         }
 
         .badge {
@@ -104,7 +93,6 @@
             border-radius: 4px;
             margin-bottom: 20px; 
             animation: blink 1s infinite;
-            color: white;
         }
 
         @keyframes blink { 50% { opacity: 0.5; } }
@@ -112,12 +100,12 @@
         .hero-detailed h1 {
             font-family: var(--font-cyber); 
             font-size: clamp(2.5rem, 7vw, 4.5rem);
-            color: #ff3131; /* Heading đỏ */
+            color: var(--neon-red); /* Tiêu đề chính màu Đỏ */
             margin-bottom: 30px; 
             text-transform: uppercase;
         }
 
-        /* --- ANALYTICS CARDS GRID --- */
+        /* --- CARDS --- */
         .analytics-grid {
             display: grid; 
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -127,165 +115,73 @@
 
         .ana-card {
             background: #0a0a0a; 
-            border: 1px solid rgba(255,49,49,0.2);
+            border: 1px solid rgba(255,255,255,0.1);
             padding: 30px; 
             border-radius: 10px; 
             position: relative;
-            transition: 0.4s;
         }
 
         .ana-card::before {
             content: ''; 
-            position: absolute; 
-            top: 0; 
-            left: 0; 
-            width: 4px; 
-            height: 100%;
-            background: var(--neon-red);
+            position: absolute; top: 0; left: 0; width: 4px; height: 100%;
+            background: var(--neon-green); /* Giữ nguyên viền xanh */
         }
 
         .ana-card h3 { 
             font-family: var(--font-mono); 
             font-size: 0.8rem; 
-            color: #a33; 
+            color: #888; 
             text-transform: uppercase;
         }
 
         .ana-card .value { 
             font-family: var(--font-cyber); 
             font-size: 2.2rem; 
-            color: #ff3131; 
+            color: var(--neon-red); /* Chỉ số màu Đỏ */
             margin: 10px 0; 
         }
 
-        /* --- CONTENT MODULES --- */
+        /* --- CONTENT --- */
         .section-padding { padding: 80px 10%; }
-        
-        .content-grid { 
-            display: grid; 
-            grid-template-columns: 1fr 1fr; 
-            gap: 60px; 
-            align-items: center;
-            margin-bottom: 120px;
-        }
+        .content-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; margin-bottom: 120px; }
 
         .image-container {
-            border: 1px solid rgba(255, 49, 49, 0.3);
+            border: 1px solid rgba(57, 255, 20, 0.3);
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 0 30px rgba(0,0,0,0.6);
             position: relative;
         }
 
         .image-container img { 
-            width: 100%; 
-            display: block; 
-            filter: grayscale(20%) contrast(1.1) sepia(30%) hue-rotate(-50deg); /* Ám chút sắc đỏ cho ảnh */
-            transition: 0.6s ease;
-        }
-        
-        .image-container:hover img { 
-            filter: grayscale(0%) sepia(0%); 
-            transform: scale(1.03); 
-        }
-
-        .image-credit {
-            position: absolute; 
-            bottom: 0; 
-            right: 0;
-            background: rgba(0,0,0,0.85); 
-            color: var(--neon-red);
-            font-family: var(--font-mono); 
-            font-size: 0.6rem;
-            padding: 6px 15px; 
-            border-top-left-radius: 12px;
-            border: 1px solid rgba(255, 49, 49, 0.2);
-        }
-
-        .report-box { 
-            background: var(--glass); 
-            padding: 45px; 
-            border-radius: 25px; 
-            border: 1px solid rgba(255,49,49,0.1); 
-            backdrop-filter: blur(10px);
+            width: 100%; display: block; filter: none; transition: 0.6s ease; /* Bỏ filter, để nguyên bản */
         }
 
         .report-box h2 { 
             font-family: var(--font-cyber); 
-            color: var(--neon-red); 
-            margin-bottom: 25px; 
-            font-size: 1.6rem; 
-            text-transform: uppercase;
+            color: var(--neon-red); /* Tiêu đề mục màu Đỏ */
+            margin-bottom: 25px; font-size: 1.6rem; text-transform: uppercase;
         }
 
-        /* --- DATA TABLE: 9 COLUMNS --- */
-        .table-section { 
-            padding: 100px 5%; 
-            background: #050505; 
-            border-top: 1px solid #1a0000;
-        }
-
+        /* --- TABLE --- */
         .table-section h2 { 
             font-family: var(--font-cyber); 
-            text-align: center; 
-            margin-bottom: 60px; 
-            color: var(--neon-red); 
+            text-align: center; margin-bottom: 60px; 
+            color: var(--neon-red); /* Tiêu đề bảng màu Đỏ */
             letter-spacing: 5px;
-        }
-
-        .table-wrapper { 
-            overflow-x: auto; 
-            border-radius: 15px; 
-            border: 1px solid #220000; 
-        }
-
-        .custom-table { 
-            width: 100%; 
-            border-collapse: collapse; 
-            min-width: 1200px; 
         }
 
         .custom-table th { 
             font-family: var(--font-cyber); 
-            font-size: 0.65rem; 
-            color: var(--neon-red); 
-            padding: 25px 15px; 
-            text-align: left; 
-            background: #000; 
+            color: var(--neon-red); /* Header bảng màu Đỏ */
+            padding: 25px 15px; text-align: left; background: #000; 
             border-bottom: 2px solid var(--neon-red); 
-            text-transform: uppercase;
         }
 
-        .custom-table td { 
-            padding: 20px 15px; 
-            font-size: 0.85rem; 
-            border-bottom: 1px solid rgba(255,0,0,0.05); 
-            background: #080808; 
-            color: #ff9999;
-        }
+        .custom-table td { color: #bbb; } /* Nội dung bảng vẫn xám/trắng */
 
-        .custom-table tr:hover td { 
-            background: #1a0000; 
-            color: #fff; 
-        }
+        footer h3, footer h4 { color: var(--neon-red) !important; }
 
-        /* --- FOOTER --- */
-        footer { 
-            background: #000; 
-            padding: 120px 10% 50px; 
-            text-align: center; 
-            border-top: 1px solid #1a0000; 
-        }
-
-        /* Chỉnh sửa các list và font mono sang màu đỏ */
-        .report-box ul li, .report-box div {
-            color: var(--neon-red) !important;
-        }
-
-        @media (max-width: 1100px) {
-            .content-grid { grid-template-columns: 1fr; }
-            .analytics-grid { grid-template-columns: 1fr 1fr; }
-        }
+        @media (max-width: 1100px) { .content-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -306,7 +202,7 @@
     <header class="hero-detailed">
         <span class="badge">CRITICAL ALERT: URBAN_SYSTEM_STRESS</span>
         <h1>PHÂN TÍCH THỰC TRẠNG <br> HỆ SINH THÁI ĐÔ THỊ 2026</h1>
-        <p style="max-width: 850px; margin: 0 auto; color: #ff9999; font-size: 1.15rem;">
+        <p style="max-width: 850px; margin: 0 auto; color: #aaa; font-size: 1.15rem;">
             Dữ liệu tổng hợp về khủng hoảng rác thải, ô nhiễm nguồn nước và chất lượng không khí tại TP. Hồ Chí Minh. Các chỉ số đều nằm trong ngưỡng rủi ro sinh học cao.
         </p>
     </header>
@@ -325,7 +221,7 @@
         <div class="ana-card">
             <h3>RÁC Y TẾ NGUY HẠI</h3>
             <div class="value">42T</div>
-            <div style="font-size: 0.7rem; color: var(--info-blue);">Critical Handling</div>
+            <p style="font-size: 0.7rem; color: var(--info-blue);">Critical Handling</p>
         </div>
         <div class="ana-card">
             <h3>BỤI MỊN PM2.5</h3>
@@ -340,49 +236,9 @@
                 <div class="report-box">
                     <h2>1. KHỦNG HOẢNG HẠ TẦNG CHÔN LẤP</h2>
                     <p>Hiện nay, TP.HCM vẫn đang phụ thuộc nặng nề vào Khu liên hợp xử lý rác Đa Phước. Tuy nhiên, việc chôn lấp lộ thiên đã đạt đến ngưỡng bão hòa, gây ra mùi hôi lan rộng trong bán kính 10km quanh khu vực phía Nam thành phố.</p>
-                    <p>Hệ thống lót đáy tại các bãi cũ đang có dấu hiệu xuống cấp, đe dọa trực tiếp đến tầng nước ngầm cung cấp cho hàng triệu hộ dân.</p>
-                    <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--neon-red); margin-top: 20px;">
-                        > Đa Phước: Tiếp nhận ~6,500 tấn/ngày <br>
-                        > Phước Hiệp: Dự phòng khẩn cấp <br>
-                        > Phát thải Methane: 28,000 m3/h
-                    </div>
                 </div>
                 <div class="image-container">
-                    <img src="https://images.unsplash.com/photo-1530587191325-3db32d826c18?auto=format&fit=crop&q=80&w=1200" alt="Bãi rác khổng lồ tại TP.HCM">
-                    <div class="image-credit">NGUỒN: UNSPLASH / URBAN_POLLUTION_ARCHIVE</div>
-                </div>
-            </div>
-        </section>
-
-        <section class="section-padding" style="background: rgba(255, 49, 49, 0.02);">
-            <div class="content-grid">
-                <div class="image-container" style="order: 2;">
-                    <img src="https://images.unsplash.com/photo-1611284446314-60a58ac0deb9?auto=format&fit=crop&q=80&w=1200" alt="Ô nhiễm rác nhựa kênh rạch">
-                    <div class="image-credit">NGUỒN: REUTERS / VIETNAM_ENVIRONMENT_REPORT</div>
-                </div>
-                <div class="report-box" style="order: 1;">
-                    <h2>2. "MA TRẬN" RÁC THẢI KÊNH RẠCH</h2>
-                    <p>Với hơn 2.000km kênh rạch chằng chịt, rác thải nhựa không được thu gom đúng cách đang trở thành thảm họa sinh thái. Ước tính mỗi ngày có hơn 80-100 tấn rác nhựa trôi thẳng ra sông Sài Gòn.</p>
-                    <p>Hạt vi nhựa (Microplastics) đã được tìm thấy trong hầu hết các mẫu nước bề mặt, gây ảnh hưởng nghiêm trọng đến chuỗi thức ăn thủy sản và sức khỏe con người.</p>
-                    <ul style="list-style: none; font-family: var(--font-mono); font-size: 0.8rem; color: var(--neon-red); margin-top: 15px;">
-                        <li>> Tốc độ phân hủy: 450+ năm</li>
-                        <li>> Tỷ lệ trôi sông: 12.5%</li>
-                        <li>> Khả năng nạo vét: 35%</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <section class="section-padding">
-            <div class="content-grid">
-                <div class="report-box">
-                    <h2>3. HIỂM HỌA RÁC THẢI Y TẾ</h2>
-                    <p>Rác thải lây nhiễm (kim tiêm, túi dịch, găng tay) nếu xử lý bằng lò đốt cũ sẽ sinh ra Dioxin và Furan cực độc. Việc chôn lấp rác y tế chưa qua tiệt trùng vi sóng tạo điều kiện cho các siêu vi khuẩn kháng thuốc (Superbugs) phát triển.</p>
-                    <p>Nhóm K-A-V-P xác định đây là "điểm đen" cần ưu tiên số hóa và xử lý bằng công nghệ xanh không khói.</p>
-                </div>
-                <div class="image-container">
-                    <img src="https://images.unsplash.com/photo-1584036561566-baf8f5f1b144?auto=format&fit=crop&q=80&w=1200" alt="Rủi ro rác thải y tế">
-                    <div class="image-credit">NGUỒN: WHO / MEDICAL_BIOHAZARD_DATABASE</div>
+                    <img src="https://images.unsplash.com/photo-1530587191325-3db32d826c18?auto=format&fit=crop&q=80&w=1200" alt="Bãi rác">
                 </div>
             </div>
         </section>
@@ -395,67 +251,28 @@
                         <tr>
                             <th>ID_ZONE</th>
                             <th>ĐỊA BÀN</th>
-                            <th>DIỆN TÍCH (km²)</th>
-                            <th>DÂN SỐ (Tr)</th>
                             <th>RÁC (T/Ngày)</th>
-                            <th>TỶ LỆ CHÔN (%)</th>
-                            <th>AQI TB</th>
-                            <th>TRẠM NODES</th>
                             <th>RỦI RO</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td>#HCM-01</td><td>Cụm Trung Tâm (Q1, 3, 5)</td><td>22,5</td><td>2,1</td><td>1850</td><td>45%</td><td>142</td><td>14</td><td style="color: var(--warning-orange);">High</td></tr>
-                        <tr><td>#HCM-02</td><td>Cụm Nam (Q7, Nhà Bè)</td><td>178,0</td><td>1,8</td><td>3400</td><td>85%</td><td>185</td><td>08</td><td style="color: var(--error-red);">CRITICAL</td></tr>
-                        <tr><td>#HCM-03</td><td>TP. Thủ Đức (Cụm Đông)</td><td>211,5</td><td>1,2</td><td>2200</td><td>60%</td><td>135</td><td>11</td><td style="color: var(--info-blue);">Medium</td></tr>
-                        <tr><td>#HCM-04</td><td>Tân Bình, Gò Vấp</td><td>58,2</td><td>2,5</td><td>2650</td><td>55%</td><td>158</td><td>09</td><td style="color: var(--warning-orange);">High</td></tr>
-                        <tr><td>#HCM-05</td><td>Bình Tân, Bình Chánh</td><td>275,4</td><td>2,9</td><td>2900</td><td>75%</td><td>172</td><td>06</td><td style="color: var(--error-red);">CRITICAL</td></tr>
-                        <tr><td>#HCM-06</td><td>Hóc Môn, Củ Chi</td><td>544,1</td><td>1,1</td><td>1100</td><td>40%</td><td>98</td><td>04</td><td style="color: var(--neon-red);">Low</td></tr>
-                        <tr><td>#HCM-07</td><td>Quận 4, 8, 10</td><td>32,8</td><td>1,4</td><td>1450</td><td>50%</td><td>160</td><td>07</td><td style="color: var(--warning-orange);">High</td></tr>
-                        <tr><td>#HCM-08</td><td>Quận 11, 12</td><td>61,3</td><td>1,9</td><td>1900</td><td>65%</td><td>155</td><td>05</td><td style="color: var(--info-blue);">Medium</td></tr>
+                        <tr><td>#HCM-01</td><td>Cụm Trung Tâm</td><td>1850</td><td style="color: var(--warning-orange);">High</td></tr>
+                        <tr><td>#HCM-02</td><td>Cụm Nam</td><td>3400</td><td style="color: var(--error-red);">CRITICAL</td></tr>
                     </tbody>
                 </table>
             </div>
-            <p style="text-align: center; margin-top: 30px; font-family: var(--font-mono); font-size: 0.7rem; color: #660000;">
-                > DỮ LIỆU ĐƯỢC ĐỒNG BỘ TỪ HỆ THỐNG QUAN TRẮC ĐỘC LẬP KAVP-2026
-            </p>
         </section>
     </main>
-
-    <footer>
-        <div style="display: flex; justify-content: space-between; align-items: flex-start; text-align: left; flex-wrap: wrap; gap: 40px;">
-            <div style="flex: 2;">
-                <h3 style="font-family: var(--font-cyber); color: var(--neon-red); margin-bottom: 20px;">HCMC GREEN TECH</h3>
-                <p style="opacity: 0.6; font-size: 0.9rem; color: #ffcccc;">Dự án được phát triển bởi nhóm K-A-V-P (Lớp 12 - THPT Nguyễn Thượng Hiền). Mục tiêu số hóa dữ liệu môi trường và đề xuất giải pháp xử lý rác y tế bằng công nghệ Vi sóng tiệt trùng không phát thải.</p>
-            </div>
-            <div style="flex: 1;">
-                <h4 style="font-family: var(--font-cyber); margin-bottom: 20px; color: #ff3131;">DỮ LIỆU THAM KHẢO</h4>
-                <ul style="list-style: none; opacity: 0.6; font-size: 0.8rem; color: #ffcccc;">
-                    <li>- Báo cáo hiện trạng môi trường HCMC 2025</li>
-                    <li>- Tổng cục Môi trường Việt Nam</li>
-                    <li>- WHO Air Quality Guideline</li>
-                    <li>- Vietnam Waste Solutions (VWS) Archives</li>
-                </ul>
-            </div>
-        </div>
-        <div style="margin-top: 60px; border-top: 1px solid #1a0000; padding-top: 20px; font-family: var(--font-mono); font-size: 0.6rem; color: #660000;">
-            URBAN_ANALYSIS_ENGINE_V5.0 // ENCRYPTION: AES-256 // PROJECT_KAVP_2026
-        </div>
-    </footer>
 
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
         particlesJS('particles-js', {
             "particles": {
-                "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
-                "color": { "value": "#ff3131" }, /* Hạt particle màu đỏ */
-                "opacity": { "value": 0.15 },
-                "size": { "value": 2 },
-                "line_linked": { "enable": true, "distance": 150, "color": "#ff3131", "opacity": 0.05, "width": 1 },
-                "move": { "enable": true, "speed": 1 }
+                "number": { "value": 80 },
+                "color": { "value": "#39ff14" }, /* Trả lại màu xanh cho hạt nền */
+                "line_linked": { "color": "#39ff14" }
             }
         });
-        console.log("%c [DATA_CORE] THUC_TRANG_ANALYSIS: LOADED (RED_THEME) ", "color: #ff3131; font-weight: bold; background: #000; padding: 10px;");
     </script>
 </body>
 </html>
