@@ -8,13 +8,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Quicksand:wght@300;500;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
 
     <style>
-        /* VERBOSE CSS CORE 
-           Declared line-by-line to ensure stability and increase file volume.
-        */
+        /* CSS CORE - Đã chuyển sang tone Đỏ */
         :root {
-            --neon-green: #39ff14;
+            --neon-red: #ff3131; /* Đổi từ neon-green sang neon-red */
             --dark-bg: #020505;
-            --glass: rgba(255, 255, 255, 0.03);
+            --glass: rgba(255, 0, 0, 0.03); /* Chuyển glass sang ánh đỏ */
             --font-cyber: 'Orbitron', sans-serif;
             --font-mono: 'Roboto Mono', monospace;
             --error-red: #ff3131;
@@ -31,7 +29,7 @@
         
         body {
             background-color: var(--dark-bg);
-            color: #ffffff;
+            color: #ff4d4d; /* Đổi màu chữ chính sang đỏ nhạt để dễ đọc */
             font-family: 'Quicksand', sans-serif;
             overflow-x: hidden;
             line-height: 1.8;
@@ -49,14 +47,14 @@
             background: rgba(0, 0, 0, 0.98);
             backdrop-filter: blur(20px);
             z-index: 1000;
-            border-bottom: 1px solid rgba(57, 255, 20, 0.3);
+            border-bottom: 1px solid rgba(255, 49, 49, 0.3); /* Border đỏ */
         }
 
         .logo {
             font-family: var(--font-cyber); 
             font-size: 1.5rem;
-            color: var(--neon-green); 
-            text-shadow: 0 0 15px var(--neon-green);
+            color: var(--neon-red); 
+            text-shadow: 0 0 15px var(--neon-red);
             text-decoration: none; 
             font-weight: 900;
         }
@@ -69,7 +67,7 @@
 
         nav ul li a {
             text-decoration: none; 
-            color: #fff;
+            color: #ffcccc; /* Chữ menu màu đỏ trắng */
             font-family: var(--font-cyber); 
             font-size: 0.8rem;
             letter-spacing: 1px; 
@@ -78,8 +76,8 @@
 
         nav ul li a:hover, 
         nav ul li a.active {
-            color: var(--neon-green); 
-            text-shadow: 0 0 10px var(--neon-green);
+            color: var(--neon-red); 
+            text-shadow: 0 0 10px var(--neon-red);
         }
 
         /* --- BACKGROUND ANIMATION --- */
@@ -94,7 +92,7 @@
         .hero-detailed {
             padding: 200px 10% 100px;
             text-align: center;
-            background: radial-gradient(circle at center, rgba(255,49,49,0.1) 0%, transparent 70%);
+            background: radial-gradient(circle at center, rgba(255,49,49,0.15) 0%, transparent 70%);
         }
 
         .badge {
@@ -106,6 +104,7 @@
             border-radius: 4px;
             margin-bottom: 20px; 
             animation: blink 1s infinite;
+            color: white;
         }
 
         @keyframes blink { 50% { opacity: 0.5; } }
@@ -113,7 +112,7 @@
         .hero-detailed h1 {
             font-family: var(--font-cyber); 
             font-size: clamp(2.5rem, 7vw, 4.5rem);
-            color: #fff; 
+            color: #ff3131; /* Heading đỏ */
             margin-bottom: 30px; 
             text-transform: uppercase;
         }
@@ -128,7 +127,7 @@
 
         .ana-card {
             background: #0a0a0a; 
-            border: 1px solid rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,49,49,0.2);
             padding: 30px; 
             border-radius: 10px; 
             position: relative;
@@ -142,20 +141,20 @@
             left: 0; 
             width: 4px; 
             height: 100%;
-            background: var(--neon-green);
+            background: var(--neon-red);
         }
 
         .ana-card h3 { 
             font-family: var(--font-mono); 
             font-size: 0.8rem; 
-            color: #888; 
+            color: #a33; 
             text-transform: uppercase;
         }
 
         .ana-card .value { 
             font-family: var(--font-cyber); 
             font-size: 2.2rem; 
-            color: #fff; 
+            color: #ff3131; 
             margin: 10px 0; 
         }
 
@@ -171,7 +170,7 @@
         }
 
         .image-container {
-            border: 1px solid rgba(57, 255, 20, 0.3);
+            border: 1px solid rgba(255, 49, 49, 0.3);
             border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 0 30px rgba(0,0,0,0.6);
@@ -181,12 +180,12 @@
         .image-container img { 
             width: 100%; 
             display: block; 
-            filter: grayscale(20%) contrast(1.1); 
+            filter: grayscale(20%) contrast(1.1) sepia(30%) hue-rotate(-50deg); /* Ám chút sắc đỏ cho ảnh */
             transition: 0.6s ease;
         }
         
         .image-container:hover img { 
-            filter: grayscale(0%); 
+            filter: grayscale(0%) sepia(0%); 
             transform: scale(1.03); 
         }
 
@@ -195,25 +194,25 @@
             bottom: 0; 
             right: 0;
             background: rgba(0,0,0,0.85); 
-            color: var(--neon-green);
+            color: var(--neon-red);
             font-family: var(--font-mono); 
             font-size: 0.6rem;
             padding: 6px 15px; 
             border-top-left-radius: 12px;
-            border: 1px solid rgba(57, 255, 20, 0.2);
+            border: 1px solid rgba(255, 49, 49, 0.2);
         }
 
         .report-box { 
             background: var(--glass); 
             padding: 45px; 
             border-radius: 25px; 
-            border: 1px solid rgba(255,255,255,0.05); 
+            border: 1px solid rgba(255,49,49,0.1); 
             backdrop-filter: blur(10px);
         }
 
         .report-box h2 { 
             font-family: var(--font-cyber); 
-            color: var(--neon-green); 
+            color: var(--neon-red); 
             margin-bottom: 25px; 
             font-size: 1.6rem; 
             text-transform: uppercase;
@@ -223,21 +222,21 @@
         .table-section { 
             padding: 100px 5%; 
             background: #050505; 
-            border-top: 1px solid #111;
+            border-top: 1px solid #1a0000;
         }
 
         .table-section h2 { 
             font-family: var(--font-cyber); 
             text-align: center; 
             margin-bottom: 60px; 
-            color: var(--neon-green); 
+            color: var(--neon-red); 
             letter-spacing: 5px;
         }
 
         .table-wrapper { 
             overflow-x: auto; 
             border-radius: 15px; 
-            border: 1px solid #222; 
+            border: 1px solid #220000; 
         }
 
         .custom-table { 
@@ -249,24 +248,24 @@
         .custom-table th { 
             font-family: var(--font-cyber); 
             font-size: 0.65rem; 
-            color: var(--neon-green); 
+            color: var(--neon-red); 
             padding: 25px 15px; 
             text-align: left; 
             background: #000; 
-            border-bottom: 2px solid var(--neon-green); 
+            border-bottom: 2px solid var(--neon-red); 
             text-transform: uppercase;
         }
 
         .custom-table td { 
             padding: 20px 15px; 
             font-size: 0.85rem; 
-            border-bottom: 1px solid rgba(255,255,255,0.03); 
+            border-bottom: 1px solid rgba(255,0,0,0.05); 
             background: #080808; 
-            color: #bbb;
+            color: #ff9999;
         }
 
         .custom-table tr:hover td { 
-            background: #111; 
+            background: #1a0000; 
             color: #fff; 
         }
 
@@ -275,7 +274,12 @@
             background: #000; 
             padding: 120px 10% 50px; 
             text-align: center; 
-            border-top: 1px solid #111; 
+            border-top: 1px solid #1a0000; 
+        }
+
+        /* Chỉnh sửa các list và font mono sang màu đỏ */
+        .report-box ul li, .report-box div {
+            color: var(--neon-red) !important;
         }
 
         @media (max-width: 1100px) {
@@ -302,7 +306,7 @@
     <header class="hero-detailed">
         <span class="badge">CRITICAL ALERT: URBAN_SYSTEM_STRESS</span>
         <h1>PHÂN TÍCH THỰC TRẠNG <br> HỆ SINH THÁI ĐÔ THỊ 2026</h1>
-        <p style="max-width: 850px; margin: 0 auto; color: #aaa; font-size: 1.15rem;">
+        <p style="max-width: 850px; margin: 0 auto; color: #ff9999; font-size: 1.15rem;">
             Dữ liệu tổng hợp về khủng hoảng rác thải, ô nhiễm nguồn nước và chất lượng không khí tại TP. Hồ Chí Minh. Các chỉ số đều nằm trong ngưỡng rủi ro sinh học cao.
         </p>
     </header>
@@ -321,7 +325,7 @@
         <div class="ana-card">
             <h3>RÁC Y TẾ NGUY HẠI</h3>
             <div class="value">42T</div>
-            <p style="font-size: 0.7rem; color: var(--info-blue);">Critical Handling</p>
+            <div style="font-size: 0.7rem; color: var(--info-blue);">Critical Handling</div>
         </div>
         <div class="ana-card">
             <h3>BỤI MỊN PM2.5</h3>
@@ -337,7 +341,7 @@
                     <h2>1. KHỦNG HOẢNG HẠ TẦNG CHÔN LẤP</h2>
                     <p>Hiện nay, TP.HCM vẫn đang phụ thuộc nặng nề vào Khu liên hợp xử lý rác Đa Phước. Tuy nhiên, việc chôn lấp lộ thiên đã đạt đến ngưỡng bão hòa, gây ra mùi hôi lan rộng trong bán kính 10km quanh khu vực phía Nam thành phố.</p>
                     <p>Hệ thống lót đáy tại các bãi cũ đang có dấu hiệu xuống cấp, đe dọa trực tiếp đến tầng nước ngầm cung cấp cho hàng triệu hộ dân.</p>
-                    <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--neon-green); margin-top: 20px;">
+                    <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--neon-red); margin-top: 20px;">
                         > Đa Phước: Tiếp nhận ~6,500 tấn/ngày <br>
                         > Phước Hiệp: Dự phòng khẩn cấp <br>
                         > Phát thải Methane: 28,000 m3/h
@@ -350,7 +354,7 @@
             </div>
         </section>
 
-        <section class="section-padding" style="background: rgba(57, 255, 20, 0.02);">
+        <section class="section-padding" style="background: rgba(255, 49, 49, 0.02);">
             <div class="content-grid">
                 <div class="image-container" style="order: 2;">
                     <img src="https://images.unsplash.com/photo-1611284446314-60a58ac0deb9?auto=format&fit=crop&q=80&w=1200" alt="Ô nhiễm rác nhựa kênh rạch">
@@ -360,7 +364,7 @@
                     <h2>2. "MA TRẬN" RÁC THẢI KÊNH RẠCH</h2>
                     <p>Với hơn 2.000km kênh rạch chằng chịt, rác thải nhựa không được thu gom đúng cách đang trở thành thảm họa sinh thái. Ước tính mỗi ngày có hơn 80-100 tấn rác nhựa trôi thẳng ra sông Sài Gòn.</p>
                     <p>Hạt vi nhựa (Microplastics) đã được tìm thấy trong hầu hết các mẫu nước bề mặt, gây ảnh hưởng nghiêm trọng đến chuỗi thức ăn thủy sản và sức khỏe con người.</p>
-                    <ul style="list-style: none; font-family: var(--font-mono); font-size: 0.8rem; color: var(--neon-green); margin-top: 15px;">
+                    <ul style="list-style: none; font-family: var(--font-mono); font-size: 0.8rem; color: var(--neon-red); margin-top: 15px;">
                         <li>> Tốc độ phân hủy: 450+ năm</li>
                         <li>> Tỷ lệ trôi sông: 12.5%</li>
                         <li>> Khả năng nạo vét: 35%</li>
@@ -406,13 +410,13 @@
                         <tr><td>#HCM-03</td><td>TP. Thủ Đức (Cụm Đông)</td><td>211,5</td><td>1,2</td><td>2200</td><td>60%</td><td>135</td><td>11</td><td style="color: var(--info-blue);">Medium</td></tr>
                         <tr><td>#HCM-04</td><td>Tân Bình, Gò Vấp</td><td>58,2</td><td>2,5</td><td>2650</td><td>55%</td><td>158</td><td>09</td><td style="color: var(--warning-orange);">High</td></tr>
                         <tr><td>#HCM-05</td><td>Bình Tân, Bình Chánh</td><td>275,4</td><td>2,9</td><td>2900</td><td>75%</td><td>172</td><td>06</td><td style="color: var(--error-red);">CRITICAL</td></tr>
-                        <tr><td>#HCM-06</td><td>Hóc Môn, Củ Chi</td><td>544,1</td><td>1,1</td><td>1100</td><td>40%</td><td>98</td><td>04</td><td style="color: var(--neon-green);">Low</td></tr>
+                        <tr><td>#HCM-06</td><td>Hóc Môn, Củ Chi</td><td>544,1</td><td>1,1</td><td>1100</td><td>40%</td><td>98</td><td>04</td><td style="color: var(--neon-red);">Low</td></tr>
                         <tr><td>#HCM-07</td><td>Quận 4, 8, 10</td><td>32,8</td><td>1,4</td><td>1450</td><td>50%</td><td>160</td><td>07</td><td style="color: var(--warning-orange);">High</td></tr>
                         <tr><td>#HCM-08</td><td>Quận 11, 12</td><td>61,3</td><td>1,9</td><td>1900</td><td>65%</td><td>155</td><td>05</td><td style="color: var(--info-blue);">Medium</td></tr>
                     </tbody>
                 </table>
             </div>
-            <p style="text-align: center; margin-top: 30px; font-family: var(--font-mono); font-size: 0.7rem; color: #444;">
+            <p style="text-align: center; margin-top: 30px; font-family: var(--font-mono); font-size: 0.7rem; color: #660000;">
                 > DỮ LIỆU ĐƯỢC ĐỒNG BỘ TỪ HỆ THỐNG QUAN TRẮC ĐỘC LẬP KAVP-2026
             </p>
         </section>
@@ -421,12 +425,12 @@
     <footer>
         <div style="display: flex; justify-content: space-between; align-items: flex-start; text-align: left; flex-wrap: wrap; gap: 40px;">
             <div style="flex: 2;">
-                <h3 style="font-family: var(--font-cyber); color: var(--neon-green); margin-bottom: 20px;">HCMC GREEN TECH</h3>
-                <p style="opacity: 0.6; font-size: 0.9rem;">Dự án được phát triển bởi nhóm K-A-V-P (Lớp 12 - THPT Nguyễn Thượng Hiền). Mục tiêu số hóa dữ liệu môi trường và đề xuất giải pháp xử lý rác y tế bằng công nghệ Vi sóng tiệt trùng không phát thải.</p>
+                <h3 style="font-family: var(--font-cyber); color: var(--neon-red); margin-bottom: 20px;">HCMC GREEN TECH</h3>
+                <p style="opacity: 0.6; font-size: 0.9rem; color: #ffcccc;">Dự án được phát triển bởi nhóm K-A-V-P (Lớp 12 - THPT Nguyễn Thượng Hiền). Mục tiêu số hóa dữ liệu môi trường và đề xuất giải pháp xử lý rác y tế bằng công nghệ Vi sóng tiệt trùng không phát thải.</p>
             </div>
             <div style="flex: 1;">
-                <h4 style="font-family: var(--font-cyber); margin-bottom: 20px;">DỮ LIỆU THAM KHẢO</h4>
-                <ul style="list-style: none; opacity: 0.6; font-size: 0.8rem;">
+                <h4 style="font-family: var(--font-cyber); margin-bottom: 20px; color: #ff3131;">DỮ LIỆU THAM KHẢO</h4>
+                <ul style="list-style: none; opacity: 0.6; font-size: 0.8rem; color: #ffcccc;">
                     <li>- Báo cáo hiện trạng môi trường HCMC 2025</li>
                     <li>- Tổng cục Môi trường Việt Nam</li>
                     <li>- WHO Air Quality Guideline</li>
@@ -434,7 +438,7 @@
                 </ul>
             </div>
         </div>
-        <div style="margin-top: 60px; border-top: 1px solid #111; padding-top: 20px; font-family: var(--font-mono); font-size: 0.6rem; color: #444;">
+        <div style="margin-top: 60px; border-top: 1px solid #1a0000; padding-top: 20px; font-family: var(--font-mono); font-size: 0.6rem; color: #660000;">
             URBAN_ANALYSIS_ENGINE_V5.0 // ENCRYPTION: AES-256 // PROJECT_KAVP_2026
         </div>
     </footer>
@@ -444,14 +448,14 @@
         particlesJS('particles-js', {
             "particles": {
                 "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
-                "color": { "value": "#39ff14" },
+                "color": { "value": "#ff3131" }, /* Hạt particle màu đỏ */
                 "opacity": { "value": 0.15 },
                 "size": { "value": 2 },
-                "line_linked": { "enable": true, "distance": 150, "color": "#39ff14", "opacity": 0.05, "width": 1 },
+                "line_linked": { "enable": true, "distance": 150, "color": "#ff3131", "opacity": 0.05, "width": 1 },
                 "move": { "enable": true, "speed": 1 }
             }
         });
-        console.log("%c [DATA_CORE] THUC_TRANG_ANALYSIS: LOADED ", "color: #39ff14; font-weight: bold; background: #000; padding: 10px;");
+        console.log("%c [DATA_CORE] THUC_TRANG_ANALYSIS: LOADED (RED_THEME) ", "color: #ff3131; font-weight: bold; background: #000; padding: 10px;");
     </script>
 </body>
 </html>
